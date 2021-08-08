@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pledge.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem1</a> &gt; <span class="el_source">Pledge.java</span></div><h1>Pledge.java</h1><pre class="source lang-java linenums">package problem1;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * Represents a pledge made to donate a sum of money to a
+ * non-profit organization at a specified point in time.
+ *
+ * @author bello
+ */
+public class Pledge extends Donation implements IEndDate {
+
+  private LocalDateTime processingDate;
+
+  /**
+   * Generates a Pledge object, utilizing the date on which
+   * the donation, its amount and the date on which it will
+   * be processed.
+   *
+   * @param creationDate - the date when the donation was made
+   * @param donationAmount - the amount of money donated
+   * @param processingDate - the date on which the pledge will be processed
+   *
+   * @throws InvalidDateException - thrown when one attempts to set the
+   * processing date prior to the creation date
+   */
+  public Pledge(LocalDateTime creationDate, Float donationAmount,
+      LocalDateTime processingDate) throws InvalidDateException {
+<span class="nc" id="L30">    super(creationDate, donationAmount);</span>
+<span class="nc" id="L31">    IEndDate.checkDate(processingDate, this);</span>
+<span class="nc" id="L32">    this.processingDate = processingDate;</span>
+<span class="nc" id="L33">  }</span>
+
+  /**
+   * Generates a Pledge object, utilizing the date on which
+   * the donation was made as well as its amount. This is instantiated
+   * in the absence of an processing date.
+   *
+   * @param creationDate - the date when the donation was made
+   * @param donationAmount - the amount of money donated
+   */
+  public Pledge(LocalDateTime creationDate, Float donationAmount) {
+<span class="nc" id="L44">    super(creationDate, donationAmount);</span>
+<span class="nc" id="L45">    this.processingDate = null;</span>
+<span class="nc" id="L46">  }</span>
+
+  /**
+   * Returns the date on which the pledge will be processed
+   *
+   * @return the date on which the pledge will be processed
+   */
+  public LocalDateTime getProcessingDate() {
+<span class="nc" id="L54">    return this.processingDate;</span>
+  }
+
+  /**
+   * Sets the date on which the pledge will be processed
+   *
+   * @param processingDate - the date on which the pledge will be processed
+   *
+   * @throws InvalidDateException - thrown when one attempts to set the
+   * processing date prior to the creation date
+   */
+  public void setProcessingDate(LocalDateTime processingDate)
+      throws InvalidDateException {
+<span class="nc" id="L67">    IEndDate.checkDate(processingDate, this);</span>
+<span class="nc" id="L68">    this.processingDate = processingDate;</span>
+<span class="nc" id="L69">  }</span>
+
+
+  /**
+   * Determines the donation amount, according to the pledge made.
+   *
+   * @param year - the year for which the donation is calculated
+   *
+   * @return the donation amount, according to the pledge made.
+   */
+  @Override
+  public Float calculateDonation(Integer year) {
+<span class="nc" id="L81">    Float wrongDonationYear = 0f;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if ((this.getProcessingDate() == null) ||</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        !(this.getProcessingDate().getYear() == year)) {</span>
+<span class="nc" id="L84">      return wrongDonationYear;</span>
+    }
+    else {
+<span class="nc" id="L87">      return (float) (Math.round(this.getDonationAmount() * ROUNDING_PRECISION) /</span>
+<span class="nc" id="L88">          ROUNDING_PRECISION);</span>
+    }
+  }
+
+  /**
+   * Determines whether a Pledge object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a Pledge object
+   *
+   * @return boolean indicating whether a Pledge object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L104">      return true;</span>
+    }
+<span class="nc bnc" id="L106" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L107">      return false;</span>
+    }
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    if (!super.equals(o)) {</span>
+<span class="nc" id="L110">      return false;</span>
+    }
+<span class="nc" id="L112">    Pledge pledge = (Pledge) o;</span>
+<span class="nc" id="L113">    return Objects.equals(processingDate, pledge.processingDate);</span>
+  }
+
+  /**
+   * Determines the hashcode of a Pledge object
+   *
+   * @return the hashcode of a Pledge object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L123">    return Objects.hash(super.hashCode(), processingDate);</span>
+  }
+
+  /**
+   * Provides a string representation of a Pledge object
+   *
+   * @return a string representation of a Pledge object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L133">    return &quot;This pledge was created on &quot; + this.creationDate +</span>
+        &quot; for an amount of $&quot; + this.donationAmount + &quot;. It will be &quot; +
+        &quot;processed on &quot; + this.processingDate + &quot;.&quot;;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

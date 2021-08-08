@@ -1,0 +1,235 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Band</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problem2</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Band (problem2)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Band</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problem2;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.Objects;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * Represent a band, which is comprised of a collection of RecordingArtists.
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * Using array lists: https://www.educative.io/edpresso/what-is-an-arraylist-in-java
+<i>10</i>&nbsp; *
+<i>11</i>&nbsp; * @author bello
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public class Band implements Creator {
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;  private String name;
+<i>16</i>&nbsp;  private ArrayList&lt;RecordingArtist&gt; bandMembers;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;  /**
+<i>19</i>&nbsp;   * Generates a Band object, utilizing the band&#39;s name as well as
+<i>20</i>&nbsp;   * its members.
+<i>21</i>&nbsp;   *
+<i>22</i>&nbsp;   * @param name - the name of the band
+<i>23</i>&nbsp;   * @param bandMembers - the recording artists constituting the band
+<i>24</i>&nbsp;   *
+<i>25</i>&nbsp;   * @throws ImproperCreatorException - thrown when one attempts to initialize a
+<i>26</i>&nbsp;   * Band object with a null reference in place of a collection of members.
+<i>27</i>&nbsp;   */
+<i>28</i>&nbsp;  public Band(String name, ArrayList&lt;RecordingArtist&gt; bandMembers)
+<b class="nc"><i>29</i>&nbsp;      throws ImproperCreatorException {</b>
+<b class="nc"><i>30</i>&nbsp;    this.checkNull(bandMembers);</b>
+<b class="nc"><i>31</i>&nbsp;    this.name = name;</b>
+<b class="nc"><i>32</i>&nbsp;    this.bandMembers = bandMembers;</b>
+<i>33</i>&nbsp;  }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;  /**
+<i>36</i>&nbsp;   * Ensures the members of a Band object cannot be established as null.
+<i>37</i>&nbsp;   *
+<i>38</i>&nbsp;   * @param bandMembers - the recording artists constituting a band
+<i>39</i>&nbsp;   *
+<i>40</i>&nbsp;   * @throws ImproperCreatorException - thrown when one attempts to initialize a
+<i>41</i>&nbsp;   * Band object with a null reference in place of a collection of members.
+<i>42</i>&nbsp;   */
+<i>43</i>&nbsp;  private void checkNull(ArrayList&lt;RecordingArtist&gt; bandMembers)
+<i>44</i>&nbsp;      throws ImproperCreatorException {
+<b class="nc"><i>45</i>&nbsp;    if (bandMembers == null) {</b>
+<b class="nc"><i>46</i>&nbsp;      throw new ImproperCreatorException();</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;  }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;  /**
+<i>51</i>&nbsp;   * Returns the name of the band
+<i>52</i>&nbsp;   *
+<i>53</i>&nbsp;   * @return the name of the band
+<i>54</i>&nbsp;   */
+<i>55</i>&nbsp;  public String getName() {
+<b class="nc"><i>56</i>&nbsp;    return this.name;</b>
+<i>57</i>&nbsp;  }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;  /**
+<i>60</i>&nbsp;   * Returns the collection of recording artists that comprise the band
+<i>61</i>&nbsp;   *
+<i>62</i>&nbsp;   * @return - the collection of recording artists that comprise the band
+<i>63</i>&nbsp;   */
+<i>64</i>&nbsp;  public ArrayList&lt;RecordingArtist&gt; getBandMembers() {
+<b class="nc"><i>65</i>&nbsp;    return this.bandMembers;</b>
+<i>66</i>&nbsp;  }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;  /**
+<i>69</i>&nbsp;   * Sets the name of the band
+<i>70</i>&nbsp;   *
+<i>71</i>&nbsp;   * @param name - the name of the band
+<i>72</i>&nbsp;   */
+<i>73</i>&nbsp;  public void setName(String name) {
+<b class="nc"><i>74</i>&nbsp;    this.name = name;</b>
+<i>75</i>&nbsp;  }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;  /**
+<i>78</i>&nbsp;   * Sets the collection of recording artists that comprise the band
+<i>79</i>&nbsp;   *
+<i>80</i>&nbsp;   * @param bandMembers - the collection of recording artists that comprise the band
+<i>81</i>&nbsp;   *
+<i>82</i>&nbsp;   * @throws ImproperCreatorException - thrown when one attempts to initialize set the
+<i>83</i>&nbsp;   * members of a Band object to a null reference.
+<i>84</i>&nbsp;   */
+<i>85</i>&nbsp;  public void setBandMembers(ArrayList&lt;RecordingArtist&gt; bandMembers)
+<i>86</i>&nbsp;      throws ImproperCreatorException {
+<b class="nc"><i>87</i>&nbsp;    this.checkNull(bandMembers);</b>
+<b class="nc"><i>88</i>&nbsp;    this.bandMembers = bandMembers;</b>
+<i>89</i>&nbsp;  }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;  /**
+<i>92</i>&nbsp;   * Determines whether the provided recording artist matches another within
+<i>93</i>&nbsp;   * the band
+<i>94</i>&nbsp;   *
+<i>95</i>&nbsp;   * @param creator - the recording artist who will be utilized to compare
+<i>96</i>&nbsp;   *                against another within the band
+<i>97</i>&nbsp;   *
+<i>98</i>&nbsp;   * @return boolean indicating whether the provided recording artists
+<i>99</i>&nbsp;   * matches another within the band
+<i>100</i>&nbsp;   */
+<i>101</i>&nbsp;  @Override
+<i>102</i>&nbsp;  public Boolean isCorrectCreator(Creator creator) {
+<b class="nc"><i>103</i>&nbsp;    for (RecordingArtist member: this.bandMembers) {</b>
+<b class="nc"><i>104</i>&nbsp;      if (member.isCorrectCreator(creator)) {</b>
+<b class="nc"><i>105</i>&nbsp;        return true;</b>
+<i>106</i>&nbsp;      }
+<b class="nc"><i>107</i>&nbsp;    }</b>
+<b class="nc"><i>108</i>&nbsp;    return false;</b>
+<i>109</i>&nbsp;  }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;  /**
+<i>112</i>&nbsp;   * Determines whether a Band object is equivalent to another object,
+<i>113</i>&nbsp;   * comparing memory location, class, and field values.
+<i>114</i>&nbsp;   *
+<i>115</i>&nbsp;   * @param o - the object being compared with a Band object
+<i>116</i>&nbsp;   *
+<i>117</i>&nbsp;   * @return boolean indicating whether a Band object is equivalent
+<i>118</i>&nbsp;   * to another object
+<i>119</i>&nbsp;   */
+<i>120</i>&nbsp;  @Override
+<i>121</i>&nbsp;  public boolean equals(Object o) {
+<b class="nc"><i>122</i>&nbsp;    if (this == o) {</b>
+<b class="nc"><i>123</i>&nbsp;      return true;</b>
+<i>124</i>&nbsp;    }
+<b class="nc"><i>125</i>&nbsp;    if (o == null || getClass() != o.getClass()) {</b>
+<b class="nc"><i>126</i>&nbsp;      return false;</b>
+<i>127</i>&nbsp;    }
+<b class="nc"><i>128</i>&nbsp;    Band band = (Band) o;</b>
+<b class="nc"><i>129</i>&nbsp;    return Objects.equals(this.name, band.name) &amp;&amp; Objects</b>
+<b class="nc"><i>130</i>&nbsp;        .equals(this.bandMembers, band.bandMembers);</b>
+<i>131</i>&nbsp;  }
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;  /**
+<i>134</i>&nbsp;   * Determines the hashcode of a Band object
+<i>135</i>&nbsp;   *
+<i>136</i>&nbsp;   * @return the hashcode of a Band object
+<i>137</i>&nbsp;   */
+<i>138</i>&nbsp;  @Override
+<i>139</i>&nbsp;  public int hashCode() {
+<b class="nc"><i>140</i>&nbsp;    return Objects.hash(this.name, this.bandMembers);</b>
+<i>141</i>&nbsp;  }
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;  /**
+<i>144</i>&nbsp;   * Provides a string representation of a Band object
+<i>145</i>&nbsp;   *
+<i>146</i>&nbsp;   * @return a string representation of a Band object
+<i>147</i>&nbsp;   */
+<i>148</i>&nbsp;  @Override
+<i>149</i>&nbsp;  public String toString() {
+<b class="nc"><i>150</i>&nbsp;    return name + &quot; with: &quot; + bandMembers;</b>
+<i>151</i>&nbsp;  }
+<i>152</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-03-25 18:59</div>
+</div>
+</body>
+</html>

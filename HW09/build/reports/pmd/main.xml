@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.26.0" timestamp="2021-04-25T02:13:59.609">
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Group_Stamesha_Bello_Colin_Nordquist_George_Alvarado-Salinas\HW09\src\main\java\problem01\view\GenerateDisplay.java">
+<violation beginline="47" endline="47" begincolumn="5" endcolumn="21" rule="SystemPrintln" ruleset="Best Practices" package="problem01.view" class="GenerateDisplay" method="printTable" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+System.out.printf is used
+</violation>
+<violation beginline="51" endline="51" begincolumn="7" endcolumn="23" rule="SystemPrintln" ruleset="Best Practices" package="problem01.view" class="GenerateDisplay" method="printTable" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+System.out.printf is used
+</violation>
+<violation beginline="71" endline="71" begincolumn="5" endcolumn="22" rule="SystemPrintln" ruleset="Best Practices" package="problem01.view" class="GenerateDisplay" method="printBorder" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+System.out.println is used
+</violation>
+</file>
+</pmd>

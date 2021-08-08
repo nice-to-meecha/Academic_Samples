@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DisplayTable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.view</a> &gt; <span class="el_source">DisplayTable.java</span></div><h1>DisplayTable.java</h1><pre class="source lang-java linenums">package problem01.view;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import problem01.Task;
+import problem01.controller.CompareDate;
+import problem01.controller.ComparePriority;
+import problem01.controller.IteratorFactory;
+import problem01.controller.Todo;
+
+/**
+ * A task for displaying the table of to-dos, according to specifications given
+ */
+public class DisplayTable implements Task {
+  private boolean showIncomplete;
+  private String showCategory;
+  private boolean sortByDate;
+  private boolean sortByPriority;
+
+  /**
+   * Constructor for the class
+   */
+<span class="fc" id="L26">  public DisplayTable() {</span>
+<span class="fc" id="L27">    this.showIncomplete = false;</span>
+<span class="fc" id="L28">    this.showCategory = null;</span>
+<span class="fc" id="L29">    this.sortByDate = false;</span>
+<span class="fc" id="L30">    this.sortByPriority = false;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Sets the showIncomplete field
+   * @param showIncomplete - the showIncomplete field
+   */
+  public void setShowIncomplete(boolean showIncomplete) {
+<span class="fc" id="L38">    this.showIncomplete = showIncomplete;</span>
+<span class="fc" id="L39">  }</span>
+
+  /**
+   * Sets the showCategory field
+   * @param showCategory - the showCategory field
+   */
+  public void setShowCategory(String showCategory) {
+<span class="fc" id="L46">    this.showCategory = showCategory;</span>
+<span class="fc" id="L47">  }</span>
+
+  /**
+   * Sets the sortByDate field
+   * @param sortByDate - the sortByDate field
+   */
+  public void setSortByDate(boolean sortByDate) {
+<span class="fc" id="L54">    this.sortByDate = sortByDate;</span>
+<span class="fc" id="L55">  }</span>
+
+  /**
+   * Sets the sortByPriority field
+   * @param sortByPriority - the sortByPriority field
+   */
+  public void setSortByPriority(boolean sortByPriority) {
+<span class="fc" id="L62">    this.sortByPriority = sortByPriority;</span>
+<span class="fc" id="L63">  }</span>
+
+  /**
+   * Returns the showIncomplete field
+   * @return - the showIncomplete field
+   */
+  public boolean isShowIncomplete() {
+<span class="fc" id="L70">    return this.showIncomplete;</span>
+  }
+
+  /**
+   * Returns the showCategory field
+   * @return - the showCategory field
+   */
+  public String getShowCategory() {
+<span class="fc" id="L78">    return this.showCategory;</span>
+  }
+
+  /**
+   * Returns the sortByDate field
+   * @return - the sortByDate field
+   */
+  public boolean isSortByDate() {
+<span class="fc" id="L86">    return this.sortByDate;</span>
+  }
+
+  /**
+   * Returns the sortByPriority
+   * @return - the sortByPriority field
+   */
+  public boolean isSortByPriority() {
+<span class="fc" id="L94">    return this.sortByPriority;</span>
+  }
+
+  /**
+   * Performs the current task, using the appropriate fields.
+   * Displays a table of Todos according to arguments provided
+   *
+   * @param todoList list of Todos being managed
+   * @return - list of Todos updated after current task performed
+   */
+  @Override
+  public List&lt;Todo&gt; performTask(List&lt;Todo&gt; todoList) {
+<span class="fc" id="L106">    List&lt;Todo&gt; alteredList = todoList;</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">    if (this.showIncomplete) {</span>
+<span class="fc" id="L108">      Iterator&lt;Todo&gt; incompleteIterator = IteratorFactory.createIterator(</span>
+          &quot;incomplete&quot;, alteredList);
+<span class="fc" id="L110">      alteredList = filterResults(incompleteIterator);</span>
+    }
+<span class="fc bfc" id="L112" title="All 2 branches covered.">    if (this.showCategory != null) {</span>
+<span class="fc" id="L113">      Iterator&lt;Todo&gt; categoryIterator = IteratorFactory.createIterator(</span>
+          this.showCategory, alteredList);
+<span class="fc" id="L115">      alteredList = filterResults(categoryIterator);</span>
+    }
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    if (this.sortByDate) {</span>
+<span class="fc" id="L118">      Comparator&lt;Todo&gt; compareDate = new CompareDate();</span>
+<span class="fc" id="L119">      alteredList.sort(compareDate);</span>
+<span class="fc" id="L120">    }</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">    else if (this.sortByPriority) {</span>
+<span class="fc" id="L122">      Comparator&lt;Todo&gt; comparePriority = new ComparePriority();</span>
+<span class="fc" id="L123">      alteredList.sort(comparePriority);</span>
+    }
+
+<span class="fc" id="L126">    int emptyList = 0;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">    if (!(alteredList.size() == emptyList)) {</span>
+<span class="fc" id="L128">      GenerateDisplay displayTable = new GenerateDisplay(alteredList);</span>
+<span class="fc" id="L129">      displayTable.printTable();</span>
+    }
+
+<span class="fc" id="L132">    return alteredList;</span>
+  }
+
+  /**
+   * Filters a provided To-do List, based on the specified filter, as stored
+   * by the iterator (Iterator Pattern).
+   *
+   * @param iterator - the iterator which will filter a To-do list, according
+   *                 to the specified filter
+   *
+   * @return a filtered To-do List, based on the specified filter, as stored
+   * by the iterator.
+   */
+  private List&lt;Todo&gt; filterResults(Iterator&lt;Todo&gt; iterator) {
+<span class="fc" id="L146">    List&lt;Todo&gt; filteredList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">    while (iterator.hasNext()) {</span>
+<span class="fc" id="L148">      filteredList.add(iterator.next());</span>
+    }
+<span class="fc" id="L150">    return filteredList;</span>
+  }
+
+  /**
+   * Checks that the given arguments for the task are valid.
+   *
+   * @throws InvalidArgumentException - Thrown if combination of args are invalid
+   */
+  @Override
+  public void validateArgs(List&lt;Todo&gt; todoList) throws InvalidArgumentException {
+<span class="fc bfc" id="L160" title="All 4 branches covered.">    if (this.sortByDate &amp;&amp; this.sortByPriority) {</span>
+<span class="fc" id="L161">      throw new InvalidArgumentException(&quot;--sort-by-priority cannot be combined with &quot;</span>
+          + &quot;--sort-by-date&quot;);
+    }
+
+<span class="fc" id="L165">    boolean present = false;</span>
+<span class="fc bfc" id="L166" title="All 4 branches covered.">    if (this.showCategory != null &amp;&amp; this.showIncomplete) {</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">      for (Todo todo : todoList) {</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        if (todo.getCategory() != null) {</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">          if (todo.getCategory().equals(this.showCategory) &amp;&amp;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">              todo.getCompleted().equals(false)) {</span>
+<span class="fc" id="L171">            present = true;</span>
+          }
+        }
+<span class="fc" id="L174">      }</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">      if (!present) {</span>
+<span class="fc" id="L176">        throw new InvalidArgumentException(&quot;No incomplete, '&quot; + this.showCategory +</span>
+            &quot;' todos were found.&quot;);
+      }
+    }
+<span class="fc bfc" id="L180" title="All 2 branches covered.">    else if (this.showCategory != null) {</span>
+<span class="fc" id="L181">      this.checkCategory(todoList);</span>
+    }
+<span class="fc bfc" id="L183" title="All 2 branches covered.">    else if (this.showIncomplete) {</span>
+<span class="fc" id="L184">      this.checkIncomplete(todoList);</span>
+    }
+<span class="fc" id="L186">  }</span>
+
+  /**
+   * Determines whether if any Todos within the provided List are incomplete.
+   *
+   * @param todoList - To-do list to be assessed for incomplete To-do membership.
+   *
+   * @return boolean indicating whether if any Todos within the provided List are incomplete.
+   *
+   * @throws InvalidArgumentException - Thrown if combination of args are invalid
+   */
+  private boolean checkIncomplete(List&lt;Todo&gt; todoList) throws InvalidArgumentException {
+<span class="fc" id="L198">    boolean present = false;</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">    for (Todo todo : todoList) {</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">      if (todo.getCompleted().equals(false)) {</span>
+<span class="fc" id="L201">        present = true;</span>
+<span class="fc" id="L202">        break;</span>
+      }
+<span class="fc" id="L204">    }</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">    if (!present) {</span>
+<span class="fc" id="L206">      throw new InvalidArgumentException(&quot;No incomplete todos were found.&quot;);</span>
+    }
+<span class="fc" id="L208">    return present;</span>
+  }
+
+  /**
+   * Determines whether if any Todos within the provided List have the indicated category.
+   *
+   * @param todoList - To-do list to be assessed for category To-do membership.
+   *
+   * @return boolean indicating whether if any Todos within the provided List have the
+   * indicated category.
+   *
+   * @throws InvalidArgumentException - Thrown if combination of args are invalid
+   */
+  private boolean checkCategory(List&lt;Todo&gt; todoList) throws InvalidArgumentException {
+<span class="fc" id="L222">    boolean present = false;</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">    for (Todo todo : todoList) {</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">      if (todo.getCategory() != null) {</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">        if (todo.getCategory().equals(this.showCategory)) {</span>
+<span class="fc" id="L226">          present = true;</span>
+<span class="fc" id="L227">          break;</span>
+        }
+      }
+<span class="fc" id="L230">    }</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">    if (!present) {</span>
+<span class="fc" id="L232">      throw new InvalidArgumentException(&quot;No todos to be displayed with the given category were &quot;</span>
+          + &quot;found&quot;);
+    }
+<span class="fc" id="L235">    return present;</span>
+  }
+
+  /**
+   * Overrides the default equals() method to compare param object to this object
+   *
+   * @param o- object for comparison
+   * @return - whether the objects are equal or not
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L246" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L247">      return true;</span>
+    }
+<span class="fc bfc" id="L249" title="All 4 branches covered.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="fc" id="L250">      return false;</span>
+    }
+<span class="fc" id="L252">    DisplayTable that = (DisplayTable) o;</span>
+<span class="fc bfc" id="L253" title="All 6 branches covered.">    return this.showIncomplete == that.showIncomplete &amp;&amp;</span>
+        this.sortByDate == that.sortByDate &amp;&amp;
+        this.sortByPriority == that.sortByPriority &amp;&amp;
+<span class="fc bfc" id="L256" title="All 2 branches covered.">        Objects.equals(this.showCategory, that.showCategory);</span>
+  }
+
+  /**
+   * Overrides the default hashCode() method, returns the hashcode of the object
+   *
+   * @return - hashcode of the object
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L266">    return Objects.hash(this.showIncomplete, this.showCategory, this.sortByDate,</span>
+<span class="fc" id="L267">        this.sortByPriority);</span>
+  }
+
+  /**
+   * Overrides the default toString() method, returns a string representation of the object
+   *
+   * @return - string representation of object
+   */
+  @Override
+  public String toString() {
+<span class="fc" id="L277">    return &quot;DisplayTable{&quot; +</span>
+        &quot;showIncomplete=&quot; + this.showIncomplete +
+        &quot;, showCategory='&quot; + this.showCategory + '\'' +
+        &quot;, sortByDate=&quot; + this.sortByDate +
+        &quot;, sortByPriority=&quot; + this.sortByPriority +
+        '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

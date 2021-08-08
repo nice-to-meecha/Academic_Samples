@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="problem01.controller.TaskManagerTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2021-04-25T07:13:56" hostname="LAPTOP-NGSLLAAC" time="0.012">
+  <properties/>
+  <testcase name="generateIDWithSingleTodoList" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testValidateArgsAllTasks" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testEquals1" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testPerformAllTasks" classname="problem01.controller.TaskManagerTest" time="0.001"/>
+  <testcase name="testAddTask" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testCreateAddTodo" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testGetID" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testToString" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testCreatAddTodoFail" classname="problem01.controller.TaskManagerTest" time="0.001"/>
+  <testcase name="testGenerateID" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testCreateCompleteTodo" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testGetTodoList" classname="problem01.controller.TaskManagerTest" time="0.001"/>
+  <testcase name="testHashCode1" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testGetTaskList" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <testcase name="testCreateCompleteTodoFail" classname="problem01.controller.TaskManagerTest" time="0.001"/>
+  <testcase name="testValidateTaskList" classname="problem01.controller.TaskManagerTest" time="0.001"/>
+  <testcase name="testCreateDisplayTable" classname="problem01.controller.TaskManagerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

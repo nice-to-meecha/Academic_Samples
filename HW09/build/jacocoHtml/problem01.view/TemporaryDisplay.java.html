@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemporaryDisplay.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.view</a> &gt; <span class="el_source">TemporaryDisplay.java</span></div><h1>TemporaryDisplay.java</h1><pre class="source lang-java linenums">package problem01.view;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import problem01.controller.Todo;
+
+/**
+ * Class which displays a collection of Todos within a user-friendly format.
+ */
+public class TemporaryDisplay {
+  private static final int TOTAL_COLUMNS = 6;
+<span class="nc" id="L15">  private static final DateTimeFormatter DATE_FORMATTER =</span>
+<span class="nc" id="L16">      DateTimeFormatter.ofPattern(&quot;MM/dd/uuuu&quot;);</span>
+<span class="nc" id="L17">  private static final ArrayList&lt;String&gt; HEADER = new ArrayList&lt;&gt;(</span>
+<span class="nc" id="L18">      Arrays.asList(&quot;ID&quot;, &quot;Text&quot;, &quot;Completed&quot;, &quot;Due Date&quot;, &quot;Priority&quot;, &quot;Category&quot;));</span>
+<span class="nc" id="L19">  private static final int[] HEADER_COLUMN_LENGTHS = new int[]{2, 4, 9, 8, 8, 8};</span>
+
+  private final List&lt;Todo&gt; todoList;
+  private List&lt;ArrayList&lt;String&gt;&gt; tokenizedTodos;
+  private int[] columnWidths;
+  private StringBuilder rowFormatter;
+
+
+  /**
+   * Generates a TemporaryDisplay object, utilizing the List of Todos that will
+   * be displayed. The tokenizedTodos, columnWidths, and rowFormatter fields are
+   * initialized as well.
+   *
+   * @param todoList - the List of todos which will be displayed in a user-friendly format
+   */
+<span class="nc" id="L34">  public TemporaryDisplay(List&lt;Todo&gt; todoList) {</span>
+<span class="nc" id="L35">    this.todoList = todoList;</span>
+<span class="nc" id="L36">    this.tokenizedTodos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L37">    this.columnWidths = HEADER_COLUMN_LENGTHS;</span>
+<span class="nc" id="L38">    this.rowFormatter = new StringBuilder();</span>
+<span class="nc" id="L39">  }</span>
+
+  /**
+   * Displays the provided collection of Todos within in a table,
+   * which is able to conform to the size of input.
+   */
+  public void printTable() {
+<span class="nc" id="L46">    this.calculateColumnWidths();</span>
+<span class="nc" id="L47">    this.formatTable();</span>
+<span class="nc" id="L48">    this.printBorder();</span>
+
+<span class="nc" id="L50">    System.out.printf(this.rowFormatter.toString(), HEADER.toArray());</span>
+<span class="nc" id="L51">    this.printBorder();</span>
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    for (ArrayList&lt;String&gt; tokenizedTodos: this.tokenizedTodos) {</span>
+<span class="nc" id="L54">      System.out.printf(this.rowFormatter.toString(), tokenizedTodos.toArray());</span>
+<span class="nc" id="L55">    }</span>
+
+<span class="nc" id="L57">    this.printBorder();</span>
+<span class="nc" id="L58">  }</span>
+
+  /**
+   * Prints horizontal edges of the table, establishing visual means of separation.
+   */
+  private void printBorder() {
+<span class="nc" id="L64">    StringBuilder border = new StringBuilder(&quot;+&quot;);</span>
+<span class="nc" id="L65">    int i, loopStart = 0, accountForSpaces = 2;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    for (int width: this.columnWidths) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">      for (i = loopStart; i &lt; (width + accountForSpaces); i++) {</span>
+<span class="nc" id="L68">        border.append(&quot;-&quot;);</span>
+      }
+<span class="nc" id="L70">      border.append(&quot;+&quot;);</span>
+    }
+<span class="nc" id="L72">    System.out.println(border.toString());</span>
+<span class="nc" id="L73">  }</span>
+
+  /**
+   * Produces a string, based on the pre-determined column widths, which
+   * can be utilized with System.out.printf to print the table rows
+   * in a specific, user-friendly format.
+   */
+  private void formatTable() {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">    for (int width: this.columnWidths) {</span>
+<span class="nc" id="L82">      this.rowFormatter.append(&quot;| %&quot;).append(width).append(&quot;s &quot;);</span>
+    }
+<span class="nc" id="L84">    this.rowFormatter.append(&quot;|\n&quot;);</span>
+<span class="nc" id="L85">  }</span>
+
+  /**
+   * Determines the width for each column, based on the maximum length
+   * of associated input.
+   */
+  private void calculateColumnWidths() {
+<span class="nc" id="L92">    this.tokenizeTodos();</span>
+<span class="nc" id="L93">    int i, loop_start = 0;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    for (i = loop_start; i &lt; TOTAL_COLUMNS; i++) {</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">      for (ArrayList&lt;String&gt; tokenizedTodo: this.tokenizedTodos) {</span>
+<span class="nc" id="L96">        int inputLength = tokenizedTodo.get(i).length();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (inputLength &gt; this.columnWidths[i]) {</span>
+<span class="nc" id="L98">          this.columnWidths[i] = inputLength;</span>
+        }
+<span class="nc" id="L100">      }</span>
+    }
+<span class="nc" id="L102">  }</span>
+
+  /**
+   * Places the String version of each field of a To-do object within an ArrayList,
+   * allowing for easy each field to be assessed (via calculateColumnWidths) and
+   * printed easily.
+   */
+  private void tokenizeTodos() {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    for (Todo todo: this.todoList) {</span>
+<span class="nc" id="L111">      ArrayList&lt;String&gt; newTodo = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L112">      newTodo.add(todo.getId().toString());</span>
+<span class="nc" id="L113">      newTodo.add(todo.getText());</span>
+<span class="nc" id="L114">      newTodo.add(todo.getCompleted().toString());</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">      String date = todo.getDueDate() != null ? todo.getDueDate().format(DATE_FORMATTER) : &quot;&quot;;</span>
+<span class="nc" id="L116">      newTodo.add(date);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">      String priority = todo.getPriority() != null ? todo.getPriority().toString() : &quot;&quot;;</span>
+<span class="nc" id="L118">      newTodo.add(priority);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">      String category = todo.getCategory() != null ? todo.getCategory() : &quot;&quot;;</span>
+<span class="nc" id="L120">      newTodo.add(category);</span>
+<span class="nc" id="L121">      this.tokenizedTodos.add(newTodo);</span>
+<span class="nc" id="L122">    }</span>
+<span class="nc" id="L123">  }</span>
+
+  /**
+   * Determines whether a TemporaryDisplay object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a TemporaryDisplay object
+   *
+   * @return boolean indicating whether a TemporaryDisplay object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L136" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L137">      return true;</span>
+    }
+<span class="nc bnc" id="L139" title="All 4 branches missed.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="nc" id="L140">      return false;</span>
+    }
+<span class="nc" id="L142">    TemporaryDisplay that = (TemporaryDisplay) o;</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    return Objects.equals(this.todoList, that.todoList) &amp;&amp;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        Objects.equals(this.tokenizedTodos, that.tokenizedTodos) &amp;&amp;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        Arrays.equals(this.columnWidths, that.columnWidths) &amp;&amp;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        Objects.equals(this.rowFormatter, that.rowFormatter);</span>
+  }
+
+  /**
+   * Determines the hashcode of a TemporaryDisplay object
+   *
+   * @return the hashcode of a TemporaryDisplay object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L156">    int result = Objects.hash(this.todoList, this.tokenizedTodos, this.rowFormatter);</span>
+<span class="nc" id="L157">    result = 31 * result + Arrays.hashCode(this.columnWidths);</span>
+<span class="nc" id="L158">    return result;</span>
+  }
+
+  /**
+   * Provides a string representation of a TemporaryDisplay object
+   *
+   * @return a string representation of a TemporaryDisplay object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L168">    return &quot;TemporaryDisplay {&quot; +</span>
+        &quot;todoList = &quot; + this.todoList +
+        &quot;, tokenizedTodos = &quot; + this.tokenizedTodos +
+<span class="nc" id="L171">        &quot;, columnWidths = &quot; + Arrays.toString(this.columnWidths) +</span>
+        &quot;, rowFormatter = &quot; + this.rowFormatter +
+        '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

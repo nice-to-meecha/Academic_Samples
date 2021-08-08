@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: IndividualCreator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problem2</a> ]
+</div>
+
+<h1>Coverage Summary for Class: IndividualCreator (problem2)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">IndividualCreator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problem2;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Objects;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * Represents individuals that generate some form of content -- in this
+<i>7</i>&nbsp; * particular case, either books or music.
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * @author bello
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public abstract class IndividualCreator implements Creator {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;  protected String firstName;
+<i>14</i>&nbsp;  protected String lastName;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;  /**
+<i>17</i>&nbsp;   * Generates an object of an IndividualCreator subclass, utilizing
+<i>18</i>&nbsp;   * the creator&#39;s first and last name.
+<i>19</i>&nbsp;   *
+<i>20</i>&nbsp;   * @param firstName - the first name of the individual creator
+<i>21</i>&nbsp;   * @param lastName - the last name of the individual creator
+<i>22</i>&nbsp;   */
+<b class="nc"><i>23</i>&nbsp;  public IndividualCreator(String firstName, String lastName) {</b>
+<b class="nc"><i>24</i>&nbsp;    this.firstName = firstName;</b>
+<b class="nc"><i>25</i>&nbsp;    this.lastName = lastName;</b>
+<i>26</i>&nbsp;  }
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;  /**
+<i>29</i>&nbsp;   * Returns the first name of the creator
+<i>30</i>&nbsp;   *
+<i>31</i>&nbsp;   * @return the first name of the creator
+<i>32</i>&nbsp;   */
+<i>33</i>&nbsp;  public String getFirstName() {
+<b class="nc"><i>34</i>&nbsp;    return this.firstName;</b>
+<i>35</i>&nbsp;  }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;  /**
+<i>38</i>&nbsp;   * Returns the last name of the creator
+<i>39</i>&nbsp;   *
+<i>40</i>&nbsp;   * @return the last name of the creator
+<i>41</i>&nbsp;   */
+<i>42</i>&nbsp;  public String getLastName() {
+<b class="nc"><i>43</i>&nbsp;    return this.lastName;</b>
+<i>44</i>&nbsp;  }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;  /**
+<i>47</i>&nbsp;   * Sets the first name of the creator
+<i>48</i>&nbsp;   *
+<i>49</i>&nbsp;   * @param firstName - the first name of the creator
+<i>50</i>&nbsp;   */
+<i>51</i>&nbsp;  public void setFirstName(String firstName) {
+<b class="nc"><i>52</i>&nbsp;    this.firstName = firstName;</b>
+<i>53</i>&nbsp;  }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;  /**
+<i>56</i>&nbsp;   * Sets the last name of the creator
+<i>57</i>&nbsp;   *
+<i>58</i>&nbsp;   * @param lastName - the last name of the creator
+<i>59</i>&nbsp;   */
+<i>60</i>&nbsp;  public void setLastName(String lastName) {
+<b class="nc"><i>61</i>&nbsp;    this.lastName = lastName;</b>
+<i>62</i>&nbsp;  }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;  /**
+<i>65</i>&nbsp;   * Determines whether an IndividualCreator object is equivalent to another object,
+<i>66</i>&nbsp;   * comparing memory location, class, and field values.
+<i>67</i>&nbsp;   *
+<i>68</i>&nbsp;   * @param o - the object being compared with an IndividualCreator object
+<i>69</i>&nbsp;   *
+<i>70</i>&nbsp;   * @return boolean indicating whether an IndividualCreator object is equivalent
+<i>71</i>&nbsp;   * to another object
+<i>72</i>&nbsp;   */
+<i>73</i>&nbsp;  @Override
+<i>74</i>&nbsp;  public boolean equals(Object o) {
+<b class="nc"><i>75</i>&nbsp;    if (this == o) {</b>
+<b class="nc"><i>76</i>&nbsp;      return true;</b>
+<i>77</i>&nbsp;    }
+<b class="nc"><i>78</i>&nbsp;    if (o == null || getClass() != o.getClass()) {</b>
+<b class="nc"><i>79</i>&nbsp;      return false;</b>
+<i>80</i>&nbsp;    }
+<b class="nc"><i>81</i>&nbsp;    IndividualCreator that = (IndividualCreator) o;</b>
+<b class="nc"><i>82</i>&nbsp;    return this.firstName.equals(that.firstName) &amp;&amp; this.lastName.equals(that.lastName);</b>
+<i>83</i>&nbsp;  }
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;  /**
+<i>86</i>&nbsp;   * Determines the hashcode of an IndividualCreator object
+<i>87</i>&nbsp;   *
+<i>88</i>&nbsp;   * @return the hashcode of an IndividualCreator object
+<i>89</i>&nbsp;   */
+<i>90</i>&nbsp;  @Override
+<i>91</i>&nbsp;  public int hashCode() {
+<b class="nc"><i>92</i>&nbsp;    return Objects.hash(this.firstName, this.lastName);</b>
+<i>93</i>&nbsp;  }
+<i>94</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-03-25 18:59</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="problem01.controller.AddTodoTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2021-04-25T07:13:55" hostname="LAPTOP-NGSLLAAC" time="0.036">
+  <properties/>
+  <testcase name="performTask" classname="problem01.controller.AddTodoTest" time="0.019"/>
+  <testcase name="getDueDate" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="testToString" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="validateArgsMissingDescription" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="validateArgsDateTime" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="isCompleted" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="getDueLocalDate" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="getID" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="setCompleted" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="setDueDate" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="setTodoText" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="setPriority" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="testHashCode" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="validateArgsHighPriority" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <testcase name="testEquals" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="validateArgsLowPriority" classname="problem01.controller.AddTodoTest" time="0.004"/>
+  <testcase name="setCategory" classname="problem01.controller.AddTodoTest" time="0.001"/>
+  <testcase name="testValidateArgs" classname="problem01.controller.AddTodoTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

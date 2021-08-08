@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MonthlyDonation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem1</a> &gt; <span class="el_source">MonthlyDonation.java</span></div><h1>MonthlyDonation.java</h1><pre class="source lang-java linenums">package problem1;
+
+import static java.time.temporal.ChronoUnit.MONTHS;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * Represents a monthly donation subscription, which bills the donor
+ * an established amount at the same time of day each month, until
+ * the end of the subscription is reached.
+ *
+ * Using MONTHS enum: https://docs.oracle.com/en/java/javase/11/docs/
+ * api/java.base/java/time/temporal/ChronoUnit.html
+ *
+ * Empty statement: https://stackoverflow.com/questions/22493765/
+ * java-do-nothing
+ *
+ * @author bello
+ */
+public class MonthlyDonation extends Donation implements IEndDate {
+
+  private LocalDateTime cancellationDate;
+
+  /**
+   * Generates a MonthlyDonation object, utilizing the date on which
+   * the donation was made as well as its amount. Its cancellation date
+   * cannot be set during instantiation (it's initially null),
+   * however it can be set afterward.
+   *
+   * @param creationDate - the date when the donation was made
+   * @param donationAmount - the amount of money donated
+   */
+  public MonthlyDonation(LocalDateTime creationDate, Float donationAmount) {
+<span class="nc" id="L35">    super(creationDate, donationAmount);</span>
+<span class="nc" id="L36">    this.cancellationDate = null;</span>
+<span class="nc" id="L37">  }</span>
+
+  /**
+   * Returns the date on which the monthly donations will end
+   *
+   * @return the date on which the monthly donations will end
+   */
+  public LocalDateTime getCancellationDate() {
+<span class="nc" id="L45">    return this.cancellationDate;</span>
+  }
+
+  /**
+   * Sets the date on which the monthly donations will end
+   *
+   * @param cancellationDate - the date on which the monthly donations will end
+   *
+   * @throws InvalidDateException - thrown when one attempts to set the
+   * cancellation date prior to the creation date
+   */
+  public void setCancellationDate(LocalDateTime cancellationDate)
+      throws InvalidDateException {
+<span class="nc" id="L58">    IEndDate.checkDate(cancellationDate, this);</span>
+<span class="nc" id="L59">    this.cancellationDate = cancellationDate;</span>
+<span class="nc" id="L60">  }</span>
+
+  /**
+   * Determines the total donation amount made during which a monthly
+   * donation subscription is active.
+   *
+   * @param year - the year for which the donation is calculated
+   *
+   * @return the total donation amount made during which a monthly
+   * donation subscription is active
+   *
+   * @throws InvalidDateException - thrown when one attempts to set the
+   * cancellation date prior to the creation date
+   */
+  public Float calculateDonation(Integer year) throws InvalidDateException {
+<span class="nc" id="L75">    float wrongDonationYear = 0f, total;</span>
+<span class="nc" id="L76">    int january = 1, december = 12, wholeYear = 12, accountForFirstPayment = 1;</span>
+<span class="nc" id="L77">    boolean wasNull = false;</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (this.getCancellationDate() == null) {</span>
+<span class="nc" id="L80">      this.calculateWithNullCancellationDate(year);</span>
+<span class="nc" id="L81">      wasNull = true;</span>
+    }
+
+    // Case when ended before or starts after specified year
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    if ((this.getCancellationDate().getYear() &lt; year) ||</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        (this.getCreationDate().getYear() &gt; year)) {</span>
+<span class="nc" id="L87">      total = wrongDonationYear;</span>
+    }
+
+    // Case when starts before and ends during year
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    else if ((this.getCreationDate().getYear() &lt; year) &amp;&amp;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        (this.getCancellationDate().getYear() == year)) {</span>
+<span class="nc" id="L93">      total = this.calculateSpecialStartOrEndDates(year, january);</span>
+    }
+
+    // Case when starts during and ends after year
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    else if ((this.getCreationDate().getYear() == year) &amp;&amp;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        ((this.getCancellationDate().getYear() &gt; year))) {</span>
+<span class="nc" id="L99">      total = this.calculateSpecialStartOrEndDates(year, december);</span>
+    }
+
+    // Case when starts before and ends after year
+<span class="nc bnc" id="L103" title="All 2 branches missed.">    else if (this.getCreationDate().getYear() &lt; year) {</span>
+<span class="nc" id="L104">      total = (wholeYear * this.getDonationAmount());</span>
+    }
+
+    // Case when starts and ends in year
+    else {
+<span class="nc" id="L109">      long numberOfMonths = this.getCreationDate().until(this.getCancellationDate(),</span>
+          MONTHS);
+<span class="nc" id="L111">      total = (this.getDonationAmount() * (numberOfMonths + accountForFirstPayment));</span>
+    }
+
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    if (wasNull) {</span>
+<span class="nc" id="L115">      this.calculateWithNullCancellationDate(year);</span>
+    }
+<span class="nc" id="L117">    return (float) (Math.round(total * ROUNDING_PRECISION) / ROUNDING_PRECISION);</span>
+  }
+
+  /**
+   * Aids in calculating the total amount of monthly donations made when
+   * the cancellation date has not yet been set.
+   *
+   * @param year - the year for which the donation is calculated
+   */
+  private void calculateWithNullCancellationDate(Integer year) throws InvalidDateException {
+    LocalDateTime setDate;
+<span class="nc" id="L128">    int december = 12;</span>
+    // Will temporarily set null date to viable date for calculation only
+<span class="nc bnc" id="L130" title="All 2 branches missed.">    if ((this.getCancellationDate() == null) &amp;&amp;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        (year &gt;= this.getCreationDate().getYear())){</span>
+<span class="nc" id="L132">      setDate = this.getCreationDate().withMonth(december).withYear(year);</span>
+    }
+    // Occurs when attempting to calculate price for years before
+    // monthly donations established
+<span class="nc bnc" id="L136" title="All 2 branches missed.">    else if (this.getCancellationDate() == null) {</span>
+<span class="nc" id="L137">      setDate = this.getCreationDate();</span>
+    }
+    else {
+<span class="nc" id="L140">      setDate = null;</span>
+    }
+
+<span class="nc" id="L143">    this.setCancellationDate(setDate);</span>
+<span class="nc" id="L144">  }</span>
+
+  /**
+   * Determines the total donation amount made during the specified year,
+   * in 2 cases: 1) when donations began before and end during the year, or
+   * 2) when donations started during and end after the year.
+   *
+   * @param year - the year for which the donation is calculated
+   * @param replacementMonth - the month to replace the original month of the
+   *                         start or end date of the donation
+   *
+   * @return the total donation amount made during which a monthly
+   * donation subscription is active
+   */
+  private Float calculateSpecialStartOrEndDates(Integer year, Integer replacementMonth) {
+<span class="nc" id="L159">    float endBeforeStart = 0f;</span>
+<span class="nc" id="L160">    int january = 1, december = 12, accountForFirstPayment = 1;</span>
+    long numberOfMonths;
+
+<span class="nc bnc" id="L163" title="All 2 branches missed.">    if (replacementMonth == january) {</span>
+<span class="nc" id="L164">      numberOfMonths = this.getCreationDate().withMonth(</span>
+<span class="nc" id="L165">          january).withYear(year).until(this.getCancellationDate(), MONTHS);</span>
+    }
+    else {
+<span class="nc" id="L168">      numberOfMonths = this.getCreationDate().until(</span>
+<span class="nc" id="L169">          this.getCreationDate().withMonth(december).withYear(year), MONTHS);</span>
+    }
+
+    // Cases for year of 2021: 1) start on 5/19/2018 and end 1/12/2021
+<span class="nc bnc" id="L173" title="All 2 branches missed.">    if (numberOfMonths == endBeforeStart) {</span>
+<span class="nc" id="L174">      return endBeforeStart;</span>
+    }
+    else {
+<span class="nc" id="L177">      return (this.getDonationAmount() * (numberOfMonths + accountForFirstPayment));</span>
+    }
+  }
+
+  /**
+   * Determines whether a MonthlyDonation object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a MonthlyDonation object
+   *
+   * @return boolean indicating whether a MonthlyDonation object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L192" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L193">      return true;</span>
+    }
+<span class="nc bnc" id="L195" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L196">      return false;</span>
+    }
+<span class="nc bnc" id="L198" title="All 2 branches missed.">    if (!super.equals(o)) {</span>
+<span class="nc" id="L199">      return false;</span>
+    }
+<span class="nc" id="L201">    MonthlyDonation that = (MonthlyDonation) o;</span>
+<span class="nc" id="L202">    return Objects.equals(this.cancellationDate, that.cancellationDate);</span>
+  }
+
+  /**
+   * Determines the hashcode of a MonthlyDonation object
+   *
+   * @return the hashcode of a MonthlyDonation object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L212">    return Objects.hash(super.hashCode(), this.cancellationDate);</span>
+  }
+
+  /**
+   * Provides a string representation of a MonthlyDonation object
+   *
+   * @return a string representation of a MonthlyDonation object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L222">    return &quot;This monthly donation was created on &quot; + this.creationDate +</span>
+        &quot;.\nAn amount of $&quot; + this.donationAmount + &quot; will be billed each month &quot; +
+        &quot;until &quot; + this.cancellationDate + &quot;.&quot;;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

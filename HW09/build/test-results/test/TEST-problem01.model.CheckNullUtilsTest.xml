@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="problem01.model.CheckNullUtilsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-04-25T07:13:56" hostname="LAPTOP-NGSLLAAC" time="0.004">
+  <properties/>
+  <testcase name="evaluateNonNullObject" classname="problem01.model.CheckNullUtilsTest" time="0.0"/>
+  <testcase name="evaluateNullString" classname="problem01.model.CheckNullUtilsTest" time="0.001"/>
+  <testcase name="evaluateNullReference" classname="problem01.model.CheckNullUtilsTest" time="0.0"/>
+  <testcase name="nonexistentConstructor" classname="problem01.model.CheckNullUtilsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

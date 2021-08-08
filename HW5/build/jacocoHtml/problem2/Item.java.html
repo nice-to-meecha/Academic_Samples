@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Item.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem2</a> &gt; <span class="el_source">Item.java</span></div><h1>Item.java</h1><pre class="source lang-java linenums">package problem2;
+
+import java.util.Objects;
+
+/**
+ * Represents the two possible items that may be stored within
+ * a catalog -- books and music.
+ *
+ * @author bello
+ */
+public abstract class Item {
+
+  protected Creator creator;
+  protected String title;
+  protected Integer year;
+
+  /**
+   * Generates an object of an Item subclass, utilizing the creator
+   * of the item, as well as its title and the year it was released
+   * or published.
+   *
+   * @param creator - the creator of the item
+   * @param title - the title name of the item
+   * @param year - the year that the item was released or published
+   */
+<span class="nc" id="L26">  public Item(Creator creator, String title, Integer year) {</span>
+<span class="nc" id="L27">    this.creator = creator;</span>
+<span class="nc" id="L28">    this.title = title;</span>
+<span class="nc" id="L29">    this.year = year;</span>
+<span class="nc" id="L30">  }</span>
+
+  /**
+   * Returns the creator of the item
+   *
+   * @return the creator of the item
+   */
+  public Creator getCreator() {
+<span class="nc" id="L38">    return this.creator;</span>
+  }
+
+  /**
+   * Returns the title name of the item
+   *
+   * @return the title name of the item
+   */
+  public String getTitle() {
+<span class="nc" id="L47">    return this.title;</span>
+  }
+
+  /**
+   * Returns the year that the item was released or published
+   *
+   * @return the year that the item was released or published
+   */
+  public Integer getYear() {
+<span class="nc" id="L56">    return this.year;</span>
+  }
+
+  /**
+   * Sets the title name of the item
+   *
+   * @param title - the title name of the item
+   */
+  public void setTitle(String title) {
+<span class="nc" id="L65">    this.title = title;</span>
+<span class="nc" id="L66">  }</span>
+
+  /**
+   * Sets the year that the item was released or published
+   *
+   * @param year - the year that the item was released or published
+   */
+  public void setYear(Integer year) {
+<span class="nc" id="L74">    this.year = year;</span>
+<span class="nc" id="L75">  }</span>
+
+  /**
+   * Determines whether an Item object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with an Item object
+   *
+   * @return boolean indicating whether an Item object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L89">      return true;</span>
+    }
+<span class="nc bnc" id="L91" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L92">      return false;</span>
+    }
+<span class="nc" id="L94">    Item item = (Item) o;</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    return this.creator.equals(item.creator) &amp;&amp;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        this.title.equals(item.title) &amp;&amp;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        this.year.equals(item.year);</span>
+  }
+
+  /**
+   * Determines the hashcode of an Item object
+   *
+   * @return the hashcode of an Item object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L107">    return Objects.hash(this.creator, this.title, this.year);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

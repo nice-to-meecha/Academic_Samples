@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckNullUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.model</a> &gt; <span class="el_source">CheckNullUtils.java</span></div><h1>CheckNullUtils.java</h1><pre class="source lang-java linenums">package problem01.model;
+
+import problem01.view.InvalidNullArgumentException;
+
+/**
+ * Class which determines whether arguments utilized within function
+ * calls can be classified as null.
+ */
+<span class="fc" id="L9">public class CheckNullUtils {</span>
+
+  /**
+   * Determines whether or not the provided argument is null, throwing an exception
+   * if the former.
+   *
+   * @param argument - An argument utilized within the call of another function
+   *
+   * @throws InvalidNullArgumentException - thrown when a null argument is utilized
+   * in unsupported fashion.
+   */
+  public static void evaluate(Object argument) throws InvalidNullArgumentException {
+<span class="fc bfc" id="L21" title="All 4 branches covered.">    if (argument == null || argument.equals(&quot;null&quot;)) {</span>
+<span class="fc" id="L22">      throw new InvalidNullArgumentException();</span>
+    }
+<span class="fc" id="L24">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

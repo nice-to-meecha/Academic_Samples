@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IteratorFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.controller</a> &gt; <span class="el_source">IteratorFactory.java</span></div><h1>IteratorFactory.java</h1><pre class="source lang-java linenums">package problem01.controller;
+
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * Class which makes use of the Factory pattern to produce Iterators
+ * meant to filter through collections of Todos, based on completeness
+ * or category.
+ */
+public class IteratorFactory {
+
+  /**
+   * Generates an empty IteratorFactory object
+   */
+<span class="fc" id="L16">  public IteratorFactory() {}</span>
+
+  /**
+   * Generates the appropriate Iterator type, according to the provided
+   * aspect by which the collection of Todos should be filtered.
+   *
+   * @param filter - the aspect of the Todos, for which matching Todos will be selected
+   * @param todoList - the list of Todos that will be sifted through, according
+   *                 to the provided filter
+   *
+   * @return an Iterator capable of filtering a collection of Todos, based on
+   * the provided filter. Returns null if the provided filter is null.
+   */
+  public static Iterator&lt;Todo&gt; createIterator(String filter, List&lt;Todo&gt; todoList) {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    if (filter.equalsIgnoreCase(&quot;incomplete&quot;)) {</span>
+<span class="fc" id="L31">      return new IncompleteIterator(todoList);</span>
+    }
+<span class="fc" id="L33">    return new CategoryIterator(filter, todoList);</span>
+  }
+
+  /**
+   * Determines whether an IteratorFactory object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with an IteratorFactory object
+   *
+   * @return boolean indicating whether an IteratorFactory object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L48">      return true;</span>
+    }
+<span class="fc bfc" id="L50" title="All 4 branches covered.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="fc" id="L51">      return false;</span>
+    }
+<span class="fc" id="L53">    return true;</span>
+  }
+
+  /**
+   * Determines the hashcode of an IteratorFactory object
+   *
+   * @return the hashcode of an IteratorFactory object
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L63">    return 73;</span>
+  }
+
+  /**
+   * Provides a string representation of an IteratorFactory object
+   *
+   * @return a string representation of an IteratorFactory object
+   */
+  @Override
+  public String toString() {
+<span class="fc" id="L73">    return &quot;IteratorFactory{}&quot;;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

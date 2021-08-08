@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Catalog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem2</a> &gt; <span class="el_source">Catalog.java</span></div><h1>Catalog.java</h1><pre class="source lang-java linenums">package problem2;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+/**
+ * Represents a catalog retaining written and audio works (books and music),
+ * created by associated authors, individual recording artists and bands, alike.
+ *
+ * @author bello
+ */
+public class Catalog implements ICatalog {
+
+  private ArrayList&lt;Item&gt; library;
+
+  /**
+   * Generates a Catalog object, with an established collection of books
+   * and music.
+   *
+   * @param library - a collection of books and music created by associated authors,
+   *                individual recording artists and bands.
+   *
+   * @throws UnacceptableLibraryException - thrown when one attempts to initialize a
+   * Catalog object with a null reference in place of a library.
+   */
+<span class="nc" id="L26">  public Catalog(ArrayList&lt;Item&gt; library) throws UnacceptableLibraryException {</span>
+<span class="nc" id="L27">    this.checkNull(library);</span>
+<span class="nc" id="L28">    this.library = library;</span>
+<span class="nc" id="L29">  }</span>
+
+  /**
+   * Ensures the library of a Catalog object cannot be established as null.
+   *
+   * @param library - a collection of books and music created by associated authors,
+   *                individual recording artists and bands.
+   *
+   * @throws UnacceptableLibraryException - thrown when one attempts to initialize a
+   * Catalog object with a null reference in place of a library.
+   */
+  private void checkNull(ArrayList&lt;Item&gt; library) throws UnacceptableLibraryException {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (library == null) {</span>
+<span class="nc" id="L42">      throw new UnacceptableLibraryException();</span>
+    }
+<span class="nc" id="L44">  }</span>
+
+  /**
+   * Generates a Catalog object without an established collection of items.
+   */
+<span class="nc" id="L49">  public Catalog() {</span>
+<span class="nc" id="L50">    this.library = new ArrayList&lt;Item&gt;();</span>
+<span class="nc" id="L51">  }</span>
+
+  /**
+   * Returns the collection of books and music retained by the catalog
+   *
+   * @return - the collection of books and music retained by the catalog
+   */
+  public ArrayList&lt;Item&gt; getLibrary() {
+<span class="nc" id="L59">    return this.library;</span>
+  }
+
+  /**
+   * Sets the collection of books and music retained by the catalog
+   *
+   * @param library  - a collection of books and music created by associated authors,
+   *                 individual recording artists and bands.
+   *
+   * @throws UnacceptableLibraryException - thrown when one attempts to set the library
+   * of a Catalog object with a null reference.
+   */
+  public void setLibrary(ArrayList&lt;Item&gt; library) throws UnacceptableLibraryException {
+<span class="nc" id="L72">    this.checkNull(library);</span>
+<span class="nc" id="L73">    this.library = library;</span>
+<span class="nc" id="L74">  }</span>
+
+  /**
+   * Appends an item to the end of the library.
+   *
+   * @param item - a book or music item being added to the library
+   */
+  @Override
+  public void addItem(Item item) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (!this.library.contains(item)) {</span>
+<span class="nc" id="L84">      this.library.add(item);</span>
+    }
+<span class="nc" id="L86">  }</span>
+
+  /**
+   * Removes an item from the library.
+   *
+   * @param item - a book or music item being removed from the library
+   */
+  @Override
+  public void removeItem(Item item) {
+    // Will not cause an error if the item
+    // is not found within the ArrayList
+<span class="nc" id="L97">    this.library.remove(item);</span>
+<span class="nc" id="L98">  }</span>
+
+  /**
+   * Provides a list containing all items from the catalog whose titles match
+   * the provided keyword.
+   *
+   * @param keyword - the letter, phrase, name, etc which will be utilized
+   *                to search for items with matching titles.
+   *
+   * @return a list containing all items from the catalog whose titles match
+   * the provided keyword.
+   */
+  @Override
+  public ArrayList&lt;Item&gt; search(String keyword){
+<span class="nc" id="L112">    ArrayList&lt;Item&gt; matchingKeywords = new ArrayList&lt;Item&gt;();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    for (Item item: this.library) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">      if (item.getTitle().toLowerCase().contains(keyword.toLowerCase())) {</span>
+<span class="nc" id="L115">        matchingKeywords.add(item);</span>
+      }
+<span class="nc" id="L117">    }</span>
+<span class="nc" id="L118">    return matchingKeywords;</span>
+  }
+
+  /**
+   * Provides a list containing all items from the catalog whose writer matches
+   * the provided author.
+   *
+   * @param author - the writer who will be utilized to search for items with a
+   *               matching author.
+   *
+   * @return a list containing all items from the catalog whose writer matches
+   * the provided author.
+   */
+  @Override
+  public ArrayList&lt;Item&gt; search(Author author){
+<span class="nc" id="L133">    ArrayList&lt;Item&gt; matchingAuthors = new ArrayList&lt;Item&gt;();</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">    for (Item book: this.library) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">      if (book.getCreator().isCorrectCreator(author)) {</span>
+<span class="nc" id="L136">        matchingAuthors.add(book);</span>
+      }
+<span class="nc" id="L138">    }</span>
+<span class="nc" id="L139">    return matchingAuthors;</span>
+  }
+
+  /**
+   * Provides a list containing all items from the catalog whose singer or
+   * band member matches the provided recording artist.
+   *
+   * @param artist - the artist who will be utilized to search for items with a
+   *               matching recording artist.
+   *
+   * @return a list containing all items from the catalog whose singer or
+   * band member matches the provided recording artist.
+   */
+  @Override
+  public ArrayList&lt;Item&gt; search(RecordingArtist artist){
+<span class="nc" id="L154">    ArrayList&lt;Item&gt; matchingArtists = new ArrayList&lt;Item&gt;();</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">    for (Item music: this.library) {</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">      if (music.getCreator().isCorrectCreator(artist)) {</span>
+<span class="nc" id="L157">        matchingArtists.add(music);</span>
+      }
+<span class="nc" id="L159">    }</span>
+<span class="nc" id="L160">    return matchingArtists;</span>
+  }
+
+  /**
+   * Determines whether a Catalog object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a Catalog object
+   *
+   * @return boolean indicating whether a Catalog object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L174" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L175">      return true;</span>
+    }
+<span class="nc bnc" id="L177" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L178">      return false;</span>
+    }
+<span class="nc" id="L180">    Catalog catalog = (Catalog) o;</span>
+<span class="nc" id="L181">    return library.equals(catalog.library);</span>
+  }
+
+  /**
+   * Determines the hashcode of a Catalog object
+   *
+   * @return the hashcode of a Catalog object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L191">    return Objects.hash(library);</span>
+  }
+
+  /**
+   * Provides a string representation of a Catalog object
+   *
+   * @return a string representation of a Catalog object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L201">    return &quot;Catalog: &quot; + library;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem2</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">package problem2;
+
+/**
+ * Represents a book item, which retains an author as its creator,
+ * as well as its title and the year it was published.
+ *
+ * @author bello
+ */
+public class Book extends Item {
+
+  /**
+   * Generates a Book object, utilizing its creator, title, and the year
+   * it was published.
+   *
+   * @param creator - the creator of the book
+   * @param title - the title of the book
+   * @param year - the year the book was published
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to establish
+   * a Book object with a RecordingArtist or Band as its creator
+   */
+  public Book(Creator creator, String title, Integer year) throws ImproperCreatorException {
+<span class="nc" id="L23">    super(creator, title, year);</span>
+<span class="nc" id="L24">    this.checkCreator(creator);</span>
+<span class="nc" id="L25">  }</span>
+
+  /**
+   * Ensures the creator of a book is not instantiated as a RecordingArtist or Band
+   *
+   * @param creator - the creator of the book
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to establish
+   * a Book object with a RecordingArtist or Band as its creator
+   */
+  private void checkCreator(Creator creator) throws ImproperCreatorException {
+<span class="nc bnc" id="L36" title="All 4 branches missed.">    if ((creator instanceof RecordingArtist) || (creator instanceof Band)) {</span>
+<span class="nc" id="L37">      throw new ImproperCreatorException();</span>
+    }
+<span class="nc" id="L39">  }</span>
+
+  /**
+   * Sets the creator of the book
+   *
+   * @param creator - the creator of the book
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to establish
+   * a Book object with a RecordingArtist or Band as its creator
+   */
+  public void setCreator(Creator creator) throws ImproperCreatorException {
+<span class="nc" id="L50">    this.checkCreator(creator);</span>
+<span class="nc" id="L51">    this.creator = creator;</span>
+<span class="nc" id="L52">  }</span>
+
+  /**
+   * Provides a string representation of a Book object
+   *
+   * @return a string representation of a Book object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L61">    return '\'' + title + &quot;' written by &quot; + creator +</span>
+        &quot; -- published in &quot; + year;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

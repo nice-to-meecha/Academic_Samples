@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.controller</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package problem01.controller;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import problem01.model.ValidateInput;
+import problem01.view.InvalidArgumentException;
+
+/**
+ * The Parser class is responsible for parsing command line arguments and passing the pertinent
+ * information to methods in the TaskManager for performing tasks.
+ */
+public class Parser implements IParser {
+
+<span class="fc" id="L17">  private static final Integer NEXT_PREV_ARG = 1;</span>
+
+  private String[] args;
+  private TaskManager taskManager;
+  private ValidateInput validate;
+  private String pathToFile;
+
+  private Boolean addTodo;
+  private Boolean completeTodo;
+  private Boolean displayTodo;
+
+  /**
+   * Constructor for the class
+   *
+   * @param args - command line arguments
+   */
+<span class="fc" id="L33">  public Parser(String[] args) {</span>
+<span class="fc" id="L34">    this.args = args;</span>
+<span class="fc" id="L35">    this.taskManager = new TaskManager(new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L36">    this.validate = new ValidateInput(this.args);</span>
+<span class="fc" id="L37">    this.pathToFile = &quot;&quot;;</span>
+
+<span class="fc" id="L39">    this.addTodo = false;</span>
+<span class="fc" id="L40">    this.completeTodo = false;</span>
+<span class="fc" id="L41">    this.displayTodo = false;</span>
+<span class="fc" id="L42">  }</span>
+
+
+  /**
+   * Returns a TaskManager object containing the tasks needed to be performed. Parses through the arguments
+   * given, passes relevant command line arguments helper methods which pass relevant information to
+   * methods in TaskManager
+   *
+   * @return - TaskManager containing list of all tasks
+   * @throws InvalidArgumentException - thrown if Arguments found invalid
+   */
+  @Override
+  public TaskManager parseCommandLine() throws InvalidArgumentException {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">    for (int i = 0; i &lt; this.args.length; i++) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">      if (this.args[i].equalsIgnoreCase(ArgConstants.ADD_TODO)) {</span>
+<span class="fc" id="L57">        this.checkAddArgs();</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.COMPLETE_TODO)) {</span>
+<span class="fc" id="L59">        this.checkCompleteArgs(i);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.DISPLAY)) {</span>
+<span class="fc" id="L61">        this.checkDisplayArgs();</span>
+      }
+    }
+<span class="fc" id="L64">    this.validate.checkNoTask(this.addTodo, this.completeTodo, this.displayTodo);</span>
+<span class="fc" id="L65">    return this.taskManager;</span>
+  }
+
+  /**
+   * Checks the arguments provided related to the AddTodo task. Passes these arguments in an
+   * organized HashMap to the TaskManager.
+   *
+   * @throws InvalidArgumentException - thrown if invalid arguments found
+   */
+  private void checkAddArgs() throws InvalidArgumentException{
+<span class="fc" id="L75">    HashMap&lt;String, String&gt; addTodoArgs = new HashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    for (int i = 0; i &lt; this.args.length; i++) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">      if (this.args[i].equalsIgnoreCase(ArgConstants.TODO_TEXT)) {</span>
+<span class="fc" id="L79">        this.validate.checkFollowingArg(i, ArgConstants.TODO_TEXT, &quot;&lt;description of todo&gt;&quot;);</span>
+<span class="fc" id="L80">        addTodoArgs.put(ArgConstants.TODO_TEXT, this.args[i + NEXT_PREV_ARG]);</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.COMPLETED)) {</span>
+<span class="fc" id="L82">        addTodoArgs.put(ArgConstants.COMPLETED, &quot;true&quot;);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.DUE)) {</span>
+<span class="fc" id="L84">        this.validate.checkFollowingArg(i, ArgConstants.DUE, &quot;&lt;due date&gt;&quot;);</span>
+<span class="fc" id="L85">        addTodoArgs.put(ArgConstants.DUE, this.args[i + NEXT_PREV_ARG]);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.PRIORITY)) {</span>
+<span class="fc" id="L87">        this.validate.checkFollowingArg(i, ArgConstants.PRIORITY, &quot;&lt;1, 2, or 3&gt;&quot;);</span>
+<span class="fc" id="L88">        addTodoArgs.put(ArgConstants.PRIORITY, this.args[i + NEXT_PREV_ARG]);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.CATEGORY)) {</span>
+<span class="fc" id="L90">        this.validate.checkFollowingArg(i, ArgConstants.CATEGORY, &quot;&lt;category&gt;&quot;);</span>
+<span class="fc" id="L91">        addTodoArgs.put(ArgConstants.CATEGORY, this.args[i + NEXT_PREV_ARG]);</span>
+      }
+    }
+<span class="fc" id="L94">    this.addTodo = true;</span>
+<span class="fc" id="L95">    this.taskManager.createAddTodo(addTodoArgs);</span>
+<span class="fc" id="L96">  }</span>
+
+  /**
+   * Checks the arguments related to the CompleteTodo task. Passes this information to the
+   * task manager.
+   *
+   * @param i - location of arg in the String[]
+   * @throws InvalidArgumentException - thrown if invalid arguments found
+   */
+  private void checkCompleteArgs(Integer i) throws InvalidArgumentException{
+<span class="fc" id="L106">    this.validate.checkFollowingArg(i, ArgConstants.COMPLETE_TODO, &quot;&lt;id&gt;&quot;);</span>
+<span class="fc" id="L107">    this.completeTodo = true;</span>
+<span class="fc" id="L108">    this.taskManager.createCompleteTodo(this.args[i + NEXT_PREV_ARG]);</span>
+<span class="fc" id="L109">  }</span>
+
+  /**
+   * Checks the arguments provided related to the DisplayTodos task. Passes these arguments in an
+   * organized HashMap to the TaskManager.
+   *
+   * @throws InvalidArgumentException - thrown if invalid arguments found
+   */
+  private void checkDisplayArgs() throws InvalidArgumentException {
+<span class="fc" id="L118">    HashMap&lt;String, String&gt; createDisplayTableArgs = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    for (int i = 0; i &lt; this.args.length; i++) {</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">      if (this.args[i].equalsIgnoreCase(ArgConstants.SHOW_INCOMPLETE)) {</span>
+<span class="fc" id="L121">        createDisplayTableArgs.put(ArgConstants.SHOW_INCOMPLETE, &quot;true&quot;);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.SHOW_CATEGORY)) {</span>
+<span class="fc" id="L123">        this.validate.checkFollowingArg(i, ArgConstants.SHOW_CATEGORY, &quot;&lt;category&gt;&quot;);</span>
+<span class="fc" id="L124">        createDisplayTableArgs.put(ArgConstants.SHOW_CATEGORY, this.args[i + NEXT_PREV_ARG]);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.SORT_BY_DATE)) {</span>
+<span class="fc" id="L126">        createDisplayTableArgs.put(ArgConstants.SORT_BY_DATE, &quot;true&quot;);</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">      } else if (this.args[i].equalsIgnoreCase(ArgConstants.SORT_BY_PRIORITY)) {</span>
+<span class="fc" id="L128">        createDisplayTableArgs.put(ArgConstants.SORT_BY_PRIORITY, &quot;true&quot;);</span>
+      }
+    }
+<span class="fc" id="L131">    this.displayTodo = true;</span>
+<span class="fc" id="L132">    this.taskManager.createDisplayTable(createDisplayTableArgs);</span>
+<span class="fc" id="L133">  }</span>
+
+  /**
+   * Sets the taskManager field
+   * @param todoList - list of Todos to pass to the TaskManager
+   */
+  public void setTaskManager(List&lt;Todo&gt; todoList) {
+<span class="fc" id="L140">    this.taskManager = new TaskManager(todoList);</span>
+<span class="fc" id="L141">  }</span>
+
+  /**
+   * Returns the taskManager field
+   * @return - the taskManager field
+   */
+  public TaskManager getTaskManager() {
+<span class="fc" id="L148">    return this.taskManager;</span>
+  }
+
+  /**
+   * Returns the path to file field
+   *
+   * @return - the path to file field
+   * @throws InvalidArgumentException - thrown if invalid arguments found
+   */
+  public String getPathToFile() throws InvalidArgumentException {
+<span class="fc" id="L158">    this.pathToFile = this.validate.checkCSV();</span>
+<span class="fc" id="L159">    return this.pathToFile;</span>
+  }
+
+  /**
+   * Overrides the default equals() method to compare param object to this object
+   *
+   * @param o- object for comparison
+   * @return - whether the objects are equal or not
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L170" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L171">      return true;</span>
+    }
+<span class="fc bfc" id="L173" title="All 4 branches covered.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="fc" id="L174">      return false;</span>
+    }
+<span class="fc" id="L176">    Parser parser = (Parser) o;</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">    return Arrays.equals(this.args, parser.args) &amp;&amp;</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">        Objects.equals(this.addTodo, parser.addTodo) &amp;&amp;</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        Objects.equals(this.completeTodo, parser.completeTodo) &amp;&amp;</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        Objects.equals(this.displayTodo, parser.displayTodo) &amp;&amp;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        Objects.equals(this.taskManager, parser.taskManager) &amp;&amp;</span>
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">        Objects.equals(this.validate, parser.validate) &amp;&amp;</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">        Objects.equals(this.pathToFile, parser.pathToFile);</span>
+  }
+
+  /**
+   * Overrides the default hashCode() method, returns the hashcode of the object
+   *
+   * @return - hashcode of the object
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L193">    int result = Objects.hash(this.taskManager, this.validate, this.pathToFile, this.addTodo,</span>
+            this.completeTodo, this.displayTodo);
+<span class="fc" id="L195">    result = 31 * result + Arrays.hashCode(this.args);</span>
+<span class="fc" id="L196">    return result;</span>
+  }
+
+  /**
+   * Overrides the default toString() method, returns a string representation of the object
+   *
+   * @return - string representation of object
+   */
+  @Override
+  public String toString() {
+<span class="fc" id="L206">    return &quot;Parser{&quot; +</span>
+<span class="fc" id="L207">        &quot;args=&quot; + Arrays.toString(this.args) +</span>
+        &quot;, taskManager=&quot; + this.taskManager +
+        &quot;, validate=&quot; + this.validate +
+        &quot;, pathToFile='&quot; + this.pathToFile + '\'' +
+        &quot;, addTodo=&quot; + this.addTodo +
+        &quot;, completeTodo=&quot; + this.completeTodo +
+        &quot;, displayTodo=&quot; + this.displayTodo +
+        '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

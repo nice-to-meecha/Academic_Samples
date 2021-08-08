@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="problem01.model.InitializeTodoListTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2021-04-25T07:13:56" hostname="LAPTOP-NGSLLAAC" time="0.079">
+  <properties/>
+  <testcase name="testEqualsTransitivity" classname="problem01.model.InitializeTodoListTest" time="0.003"/>
+  <testcase name="testToString" classname="problem01.model.InitializeTodoListTest" time="0.003"/>
+  <testcase name="testHashCodeDifferent" classname="problem01.model.InitializeTodoListTest" time="0.009"/>
+  <testcase name="testHashCodeConsistency" classname="problem01.model.InitializeTodoListTest" time="0.001"/>
+  <testcase name="testEqualsNull" classname="problem01.model.InitializeTodoListTest" time="0.001"/>
+  <testcase name="getTodoMap" classname="problem01.model.InitializeTodoListTest" time="0.006"/>
+  <testcase name="getHeaderColumnOrder" classname="problem01.model.InitializeTodoListTest" time="0.001"/>
+  <testcase name="testHashCodeSelfConsistency" classname="problem01.model.InitializeTodoListTest" time="0.002"/>
+  <testcase name="testEqualsSymmetry" classname="problem01.model.InitializeTodoListTest" time="0.006"/>
+  <testcase name="parseCSVEntries" classname="problem01.model.InitializeTodoListTest" time="0.003"/>
+  <testcase name="testEqualsFieldCoverage" classname="problem01.model.InitializeTodoListTest" time="0.002"/>
+  <testcase name="testEqualsReflexivity" classname="problem01.model.InitializeTodoListTest" time="0.001"/>
+  <testcase name="testEqualsConsistency" classname="problem01.model.InitializeTodoListTest" time="0.0"/>
+  <testcase name="testEqualsDifferentClasses" classname="problem01.model.InitializeTodoListTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

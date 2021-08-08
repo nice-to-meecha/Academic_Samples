@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.26.0" timestamp="2021-02-26T01:48:43.222">
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem1\DonationTest.java">
+<violation beginline="75" endline="75" begincolumn="17" endcolumn="37" rule="EqualsNull" ruleset="Error Prone" package="problem1" class="DonationTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem1\MonthlyDonationTest.java">
+<violation beginline="149" endline="149" begincolumn="17" endcolumn="37" rule="EqualsNull" ruleset="Error Prone" package="problem1" class="MonthlyDonationTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem1\NonProfitTest.java">
+<violation beginline="24" endline="24" begincolumn="33" endcolumn="39" rule="FieldNamingConventions" ruleset="Code Style" package="problem1" class="NonProfitTest" variable="oneTime" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The constant name 'oneTime' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="24" endline="24" begincolumn="33" endcolumn="39" rule="VariableNamingConventions" ruleset="Code Style" package="problem1" class="NonProfitTest" variable="oneTime" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_codestyle.html#variablenamingconventions" priority="1">
+Variables that are final and static should be all capitals, 'oneTime' is not all capitals.
+</violation>
+<violation beginline="25" endline="25" begincolumn="33" endcolumn="39" rule="FieldNamingConventions" ruleset="Code Style" package="problem1" class="NonProfitTest" variable="monthly" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The constant name 'monthly' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="25" endline="25" begincolumn="33" endcolumn="39" rule="VariableNamingConventions" ruleset="Code Style" package="problem1" class="NonProfitTest" variable="monthly" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_codestyle.html#variablenamingconventions" priority="1">
+Variables that are final and static should be all capitals, 'monthly' is not all capitals.
+</violation>
+<violation beginline="202" endline="202" begincolumn="17" endcolumn="38" rule="EqualsNull" ruleset="Error Prone" package="problem1" class="NonProfitTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem1\OneTimeDonationTest.java">
+<violation beginline="68" endline="68" begincolumn="17" endcolumn="37" rule="EqualsNull" ruleset="Error Prone" package="problem1" class="OneTimeDonationTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem1\PledgeTest.java">
+<violation beginline="92" endline="92" begincolumn="17" endcolumn="37" rule="EqualsNull" ruleset="Error Prone" package="problem1" class="PledgeTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem2\BandTest.java">
+<violation beginline="102" endline="102" begincolumn="17" endcolumn="33" rule="EqualsNull" ruleset="Error Prone" package="problem2" class="BandTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem2\BookTest.java">
+<violation beginline="105" endline="105" begincolumn="17" endcolumn="33" rule="EqualsNull" ruleset="Error Prone" package="problem2" class="BookTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem2\CatalogTest.java">
+<violation beginline="252" endline="252" begincolumn="17" endcolumn="36" rule="EqualsNull" ruleset="Error Prone" package="problem2" class="CatalogTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+<file name="C:\Users\bello\OneDrive\Documents\class_repos\cs5004\assignments\Stamesha_Bello_repository\HW5\src\test\java\problem2\RecordingArtistTest.java">
+<violation beginline="86" endline="86" begincolumn="17" endcolumn="35" rule="EqualsNull" ruleset="Error Prone" package="problem2" class="RecordingArtistTest" method="testEqualsNull" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_errorprone.html#equalsnull" priority="1">
+Avoid using equals() to compare against null
+</violation>
+</file>
+</pmd>

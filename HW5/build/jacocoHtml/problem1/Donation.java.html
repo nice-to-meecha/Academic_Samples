@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Donation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem1</a> &gt; <span class="el_source">Donation.java</span></div><h1>Donation.java</h1><pre class="source lang-java linenums">package problem1;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * Represents donations made to non-profit organizations, according to
+ * their date of donation/pledge as well as the amount given/promised.
+ *
+ * LocalDateTime uses: https://docs.oracle.com/en/java/javase/11/docs/
+ * api/java.base/java/time/LocalDateTime.html
+ *
+ * Rounding to hundredths place: https://stackoverflow.com/questions/
+ * 11701399/round-up-to-2-decimal-places-in-java
+ *
+ * @author bello
+ */
+public abstract class Donation implements IDonation {
+
+  protected LocalDateTime creationDate;
+  protected Float donationAmount;
+<span class="nc" id="L22">  protected static final Float ROUNDING_PRECISION = 100.0f;</span>
+
+  /**
+   * Used by subclasses to generate objects that can be categorized as
+   * Donations.
+   *
+   * @param creationDate - the date when the donation was made or pledged
+   * @param donationAmount - the amount of money donated or pledged
+   */
+<span class="nc" id="L31">  public Donation(LocalDateTime creationDate, Float donationAmount) {</span>
+<span class="nc" id="L32">    this.creationDate = creationDate;</span>
+<span class="nc" id="L33">    this.donationAmount = donationAmount;</span>
+<span class="nc" id="L34">  }</span>
+
+  /**
+   * Returns the date when the donation was made or pledged
+   *
+   * @return the date when the donation was made or pledged
+   */
+  public LocalDateTime getCreationDate() {
+<span class="nc" id="L42">    return this.creationDate;</span>
+  }
+
+  /**
+   * Returns the amount of money donated or pledged
+   *
+   * @return the amount of money donated or pledged
+   */
+  public Float getDonationAmount() {
+<span class="nc" id="L51">    return this.donationAmount;</span>
+  }
+
+  /**
+   * Sets the date when the donation was made or pledged
+   *
+   * @param creationDate - the date when the donation was made or pledged
+   */
+  public void setCreationDate(LocalDateTime creationDate) {
+<span class="nc" id="L60">    this.creationDate = creationDate;</span>
+<span class="nc" id="L61">  }</span>
+
+  /**
+   * Sets the amount of money donated or pledged
+   *
+   * @param donationAmount - the amount of money donated or pledged
+   */
+  public void setDonationAmount(Float donationAmount) {
+<span class="nc" id="L69">    this.donationAmount = donationAmount;</span>
+<span class="nc" id="L70">  }</span>
+
+  /**
+   * Determines whether a Donation object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a Donation object
+   *
+   * @return boolean indicating whether a Donation object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L84">      return true;</span>
+    }
+<span class="nc bnc" id="L86" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L87">      return false;</span>
+    }
+<span class="nc" id="L89">    Donation donation = (Donation) o;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    return Objects.equals(this.creationDate, donation.creationDate) &amp;&amp; Objects</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        .equals(this.donationAmount, donation.donationAmount);</span>
+  }
+
+  /**
+   * Determines the hashcode of a Donation object
+   *
+   * @return the hashcode of a Donation object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L101">    return Objects.hash(this.creationDate, this.donationAmount);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

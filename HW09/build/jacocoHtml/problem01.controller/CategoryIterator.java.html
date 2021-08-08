@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CategoryIterator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.controller</a> &gt; <span class="el_source">CategoryIterator.java</span></div><h1>CategoryIterator.java</h1><pre class="source lang-java linenums">package problem01.controller;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Iterator class which can be utilized to return all Todos (within
+ * a collection) of the same category as that provided.
+ */
+public class CategoryIterator implements Iterator&lt;Todo&gt; {
+
+  private static final int STARTING_INDEX = 0;
+
+  private String category;
+  private List&lt;Todo&gt; todoList;
+  private int currentIndex;
+
+  /**
+   * Generates a CategoryIterator object, utilizing the list that
+   * will be iterated.
+   *
+   * @param category  - the category by which Todos will be filtered
+   * @param todoList - the list to be iterated over, returning Todos belonging
+   *                 to the provided category
+   */
+<span class="fc" id="L27">  public CategoryIterator(String category, List&lt;Todo&gt; todoList) {</span>
+<span class="fc" id="L28">    this.category = category;</span>
+<span class="fc" id="L29">    this.todoList = todoList;</span>
+<span class="fc" id="L30">    this.currentIndex = STARTING_INDEX;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Determines whether there are remaining Todos (within the provided collection
+   * of Todos) that belong to the specified category.
+   *
+   * @return boolean indicating whether there are remaining Todos (within the
+   * provided collection of Todos) that belong to the specified category.
+   */
+  @Override
+  public boolean hasNext() {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    if (this.currentIndex &gt;= this.todoList.size()) {</span>
+<span class="fc" id="L43">      return false;</span>
+    }
+<span class="fc bfc" id="L45" title="All 2 branches covered.">    if (this.todoList.get(this.currentIndex).getCategory() != null &amp;&amp;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        this.todoList.get(this.currentIndex).getCategory().equalsIgnoreCase(this.category)) {</span>
+<span class="fc" id="L47">      return true;</span>
+    }
+    else {
+<span class="fc" id="L50">      this.currentIndex++;</span>
+<span class="fc" id="L51">      return this.hasNext();</span>
+    }
+  }
+
+  /**
+   * Returns the next to-do (used hyphen to avoid yellow highlighting) in succession
+   * of the provided collection that belongs to the specified category.
+   *
+   * @return the next to-do in succession of the provided collection that belongs
+   * to the specified category.
+   */
+  @Override
+  public Todo next() {
+<span class="fc" id="L64">    Todo nextTodo = this.todoList.get(this.currentIndex);</span>
+<span class="fc" id="L65">    this.currentIndex++;</span>
+<span class="fc" id="L66">    return nextTodo;</span>
+  }
+
+  /**
+   * Determines whether a CategoryIterator object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a CategoryIterator object
+   *
+   * @return boolean indicating whether a CategoryIterator object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L81">      return true;</span>
+    }
+<span class="fc bfc" id="L83" title="All 4 branches covered.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="fc" id="L84">      return false;</span>
+    }
+<span class="fc" id="L86">    CategoryIterator that = (CategoryIterator) o;</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">    return this.currentIndex == that.currentIndex &amp;&amp;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        Objects.equals(this.category, that.category) &amp;&amp;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        Objects.equals(this.todoList, that.todoList);</span>
+  }
+
+  /**
+   * Determines the hashcode of a CategoryIterator object
+   *
+   * @return the hashcode of a CategoryIterator object
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L99">    return Objects.hash(this.category, this.todoList, this.currentIndex);</span>
+  }
+
+  /**
+   * Provides a string representation of a CategoryIterator object
+   *
+   * @return a string representation of a CategoryIterator object
+   */
+  @Override
+  public String toString() {
+<span class="fc" id="L109">    return &quot;CategoryIterator {&quot; +</span>
+        &quot;category = '&quot; + this.category + '\'' +
+        &quot;, todoList = &quot; + this.todoList +
+        &quot;, currentIndex = &quot; + this.currentIndex +
+        '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

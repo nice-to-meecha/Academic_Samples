@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Item</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problem2</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Item (problem2)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Item</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problem2;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Objects;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * Represents the two possible items that may be stored within
+<i>7</i>&nbsp; * a catalog -- books and music.
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * @author bello
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public abstract class Item {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;  protected Creator creator;
+<i>14</i>&nbsp;  protected String title;
+<i>15</i>&nbsp;  protected Integer year;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;  /**
+<i>18</i>&nbsp;   * Generates an object of an Item subclass, utilizing the creator
+<i>19</i>&nbsp;   * of the item, as well as its title and the year it was released
+<i>20</i>&nbsp;   * or published.
+<i>21</i>&nbsp;   *
+<i>22</i>&nbsp;   * @param creator - the creator of the item
+<i>23</i>&nbsp;   * @param title - the title name of the item
+<i>24</i>&nbsp;   * @param year - the year that the item was released or published
+<i>25</i>&nbsp;   */
+<b class="nc"><i>26</i>&nbsp;  public Item(Creator creator, String title, Integer year) {</b>
+<b class="nc"><i>27</i>&nbsp;    this.creator = creator;</b>
+<b class="nc"><i>28</i>&nbsp;    this.title = title;</b>
+<b class="nc"><i>29</i>&nbsp;    this.year = year;</b>
+<i>30</i>&nbsp;  }
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;  /**
+<i>33</i>&nbsp;   * Returns the creator of the item
+<i>34</i>&nbsp;   *
+<i>35</i>&nbsp;   * @return the creator of the item
+<i>36</i>&nbsp;   */
+<i>37</i>&nbsp;  public Creator getCreator() {
+<b class="nc"><i>38</i>&nbsp;    return this.creator;</b>
+<i>39</i>&nbsp;  }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;  /**
+<i>42</i>&nbsp;   * Returns the title name of the item
+<i>43</i>&nbsp;   *
+<i>44</i>&nbsp;   * @return the title name of the item
+<i>45</i>&nbsp;   */
+<i>46</i>&nbsp;  public String getTitle() {
+<b class="nc"><i>47</i>&nbsp;    return this.title;</b>
+<i>48</i>&nbsp;  }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;  /**
+<i>51</i>&nbsp;   * Returns the year that the item was released or published
+<i>52</i>&nbsp;   *
+<i>53</i>&nbsp;   * @return the year that the item was released or published
+<i>54</i>&nbsp;   */
+<i>55</i>&nbsp;  public Integer getYear() {
+<b class="nc"><i>56</i>&nbsp;    return this.year;</b>
+<i>57</i>&nbsp;  }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;  /**
+<i>60</i>&nbsp;   * Sets the title name of the item
+<i>61</i>&nbsp;   *
+<i>62</i>&nbsp;   * @param title - the title name of the item
+<i>63</i>&nbsp;   */
+<i>64</i>&nbsp;  public void setTitle(String title) {
+<b class="nc"><i>65</i>&nbsp;    this.title = title;</b>
+<i>66</i>&nbsp;  }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;  /**
+<i>69</i>&nbsp;   * Sets the year that the item was released or published
+<i>70</i>&nbsp;   *
+<i>71</i>&nbsp;   * @param year - the year that the item was released or published
+<i>72</i>&nbsp;   */
+<i>73</i>&nbsp;  public void setYear(Integer year) {
+<b class="nc"><i>74</i>&nbsp;    this.year = year;</b>
+<i>75</i>&nbsp;  }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;  /**
+<i>78</i>&nbsp;   * Determines whether an Item object is equivalent to another object,
+<i>79</i>&nbsp;   * comparing memory location, class, and field values.
+<i>80</i>&nbsp;   *
+<i>81</i>&nbsp;   * @param o - the object being compared with an Item object
+<i>82</i>&nbsp;   *
+<i>83</i>&nbsp;   * @return boolean indicating whether an Item object is equivalent
+<i>84</i>&nbsp;   * to another object
+<i>85</i>&nbsp;   */
+<i>86</i>&nbsp;  @Override
+<i>87</i>&nbsp;  public boolean equals(Object o) {
+<b class="nc"><i>88</i>&nbsp;    if (this == o) {</b>
+<b class="nc"><i>89</i>&nbsp;      return true;</b>
+<i>90</i>&nbsp;    }
+<b class="nc"><i>91</i>&nbsp;    if (o == null || getClass() != o.getClass()) {</b>
+<b class="nc"><i>92</i>&nbsp;      return false;</b>
+<i>93</i>&nbsp;    }
+<b class="nc"><i>94</i>&nbsp;    Item item = (Item) o;</b>
+<b class="nc"><i>95</i>&nbsp;    return this.creator.equals(item.creator) &amp;&amp;</b>
+<b class="nc"><i>96</i>&nbsp;        this.title.equals(item.title) &amp;&amp;</b>
+<b class="nc"><i>97</i>&nbsp;        this.year.equals(item.year);</b>
+<i>98</i>&nbsp;  }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;  /**
+<i>101</i>&nbsp;   * Determines the hashcode of an Item object
+<i>102</i>&nbsp;   *
+<i>103</i>&nbsp;   * @return the hashcode of an Item object
+<i>104</i>&nbsp;   */
+<i>105</i>&nbsp;  @Override
+<i>106</i>&nbsp;  public int hashCode() {
+<b class="nc"><i>107</i>&nbsp;    return Objects.hash(this.creator, this.title, this.year);</b>
+<i>108</i>&nbsp;  }
+<i>109</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-03-25 18:59</div>
+</div>
+</body>
+</html>

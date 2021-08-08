@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CompareDate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.controller</a> &gt; <span class="el_source">CompareDate.java</span></div><h1>CompareDate.java</h1><pre class="source lang-java linenums">package problem01.controller;
+
+import java.util.Comparator;
+
+/**
+ * Comparator class which can be utilized to sort all Todos,
+ * according to their date.
+ */
+public class CompareDate implements Comparator&lt;Todo&gt; {
+
+  private static final int EQUIVALENT_DATES = 0;
+
+  /**
+   * Generates an empty CompareDate object
+   */
+<span class="fc" id="L16">  public CompareDate() {}</span>
+
+  /**
+   * Compares two to-do objects, according to their due dates.
+   *
+   * @param o1 - the to-do that is being compared with o2 to-do
+   * @param o2 - the to-do that is being compared with o1 to-do
+   *
+   * @return an integer indicating the equivalency of the two to-dos.
+   * Returns a negative value if o1's due date is earlier than that of o2.
+   * Returns a positive value if o1's due date is later than that of o2.
+   * Returns 0 if both due dates are the same.
+   */
+  @Override
+  public int compare(Todo o1, Todo o2) {
+<span class="fc" id="L31">    int comparison, nullAtEndOfList = 1;</span>
+<span class="fc bfc" id="L32" title="All 4 branches covered.">    if (o1.getDueDate() == null &amp;&amp; o2.getDueDate() == null) {</span>
+<span class="fc" id="L33">      comparison = EQUIVALENT_DATES;</span>
+    }
+<span class="fc bfc" id="L35" title="All 2 branches covered.">    else if (o1.getDueDate() == null) {</span>
+<span class="fc" id="L36">      comparison = nullAtEndOfList;</span>
+    }
+<span class="fc bfc" id="L38" title="All 2 branches covered.">    else if (o2.getDueDate() == null) {</span>
+<span class="fc" id="L39">      comparison = -(nullAtEndOfList);</span>
+    }
+    else {
+<span class="fc" id="L42">      comparison = o1.getDueDate().compareTo(o2.getDueDate());</span>
+    }
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">    if (comparison == EQUIVALENT_DATES) {</span>
+<span class="fc" id="L46">      comparison = o1.getId().compareTo(o2.getId());</span>
+    }
+<span class="fc" id="L48">    return comparison;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

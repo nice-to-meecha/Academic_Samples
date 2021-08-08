@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Band.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW5</a> &gt; <a href="index.source.html" class="el_package">problem2</a> &gt; <span class="el_source">Band.java</span></div><h1>Band.java</h1><pre class="source lang-java linenums">package problem2;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+/**
+ * Represent a band, which is comprised of a collection of RecordingArtists.
+ *
+ * Using array lists: https://www.educative.io/edpresso/what-is-an-arraylist-in-java
+ *
+ * @author bello
+ */
+public class Band implements Creator {
+
+  private String name;
+  private ArrayList&lt;RecordingArtist&gt; bandMembers;
+
+  /**
+   * Generates a Band object, utilizing the band's name as well as
+   * its members.
+   *
+   * @param name - the name of the band
+   * @param bandMembers - the recording artists constituting the band
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to initialize a
+   * Band object with a null reference in place of a collection of members.
+   */
+  public Band(String name, ArrayList&lt;RecordingArtist&gt; bandMembers)
+<span class="nc" id="L29">      throws ImproperCreatorException {</span>
+<span class="nc" id="L30">    this.checkNull(bandMembers);</span>
+<span class="nc" id="L31">    this.name = name;</span>
+<span class="nc" id="L32">    this.bandMembers = bandMembers;</span>
+<span class="nc" id="L33">  }</span>
+
+  /**
+   * Ensures the members of a Band object cannot be established as null.
+   *
+   * @param bandMembers - the recording artists constituting a band
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to initialize a
+   * Band object with a null reference in place of a collection of members.
+   */
+  private void checkNull(ArrayList&lt;RecordingArtist&gt; bandMembers)
+      throws ImproperCreatorException {
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    if (bandMembers == null) {</span>
+<span class="nc" id="L46">      throw new ImproperCreatorException();</span>
+    }
+<span class="nc" id="L48">  }</span>
+
+  /**
+   * Returns the name of the band
+   *
+   * @return the name of the band
+   */
+  public String getName() {
+<span class="nc" id="L56">    return this.name;</span>
+  }
+
+  /**
+   * Returns the collection of recording artists that comprise the band
+   *
+   * @return - the collection of recording artists that comprise the band
+   */
+  public ArrayList&lt;RecordingArtist&gt; getBandMembers() {
+<span class="nc" id="L65">    return this.bandMembers;</span>
+  }
+
+  /**
+   * Sets the name of the band
+   *
+   * @param name - the name of the band
+   */
+  public void setName(String name) {
+<span class="nc" id="L74">    this.name = name;</span>
+<span class="nc" id="L75">  }</span>
+
+  /**
+   * Sets the collection of recording artists that comprise the band
+   *
+   * @param bandMembers - the collection of recording artists that comprise the band
+   *
+   * @throws ImproperCreatorException - thrown when one attempts to initialize set the
+   * members of a Band object to a null reference.
+   */
+  public void setBandMembers(ArrayList&lt;RecordingArtist&gt; bandMembers)
+      throws ImproperCreatorException {
+<span class="nc" id="L87">    this.checkNull(bandMembers);</span>
+<span class="nc" id="L88">    this.bandMembers = bandMembers;</span>
+<span class="nc" id="L89">  }</span>
+
+  /**
+   * Determines whether the provided recording artist matches another within
+   * the band
+   *
+   * @param creator - the recording artist who will be utilized to compare
+   *                against another within the band
+   *
+   * @return boolean indicating whether the provided recording artists
+   * matches another within the band
+   */
+  @Override
+  public Boolean isCorrectCreator(Creator creator) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">    for (RecordingArtist member: this.bandMembers) {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">      if (member.isCorrectCreator(creator)) {</span>
+<span class="nc" id="L105">        return true;</span>
+      }
+<span class="nc" id="L107">    }</span>
+<span class="nc" id="L108">    return false;</span>
+  }
+
+  /**
+   * Determines whether a Band object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with a Band object
+   *
+   * @return boolean indicating whether a Band object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L123">      return true;</span>
+    }
+<span class="nc bnc" id="L125" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L126">      return false;</span>
+    }
+<span class="nc" id="L128">    Band band = (Band) o;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">    return Objects.equals(this.name, band.name) &amp;&amp; Objects</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        .equals(this.bandMembers, band.bandMembers);</span>
+  }
+
+  /**
+   * Determines the hashcode of a Band object
+   *
+   * @return the hashcode of a Band object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L140">    return Objects.hash(this.name, this.bandMembers);</span>
+  }
+
+  /**
+   * Provides a string representation of a Band object
+   *
+   * @return a string representation of a Band object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L150">    return name + &quot; with: &quot; + bandMembers;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

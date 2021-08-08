@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InitializeTodoList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW09</a> &gt; <a href="index.source.html" class="el_package">problem01.model</a> &gt; <span class="el_source">InitializeTodoList.java</span></div><h1>InitializeTodoList.java</h1><pre class="source lang-java linenums">package problem01.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import problem01.controller.Parser;
+import problem01.controller.TaskManager;
+import problem01.controller.Todo;
+import problem01.view.InvalidArgumentException;
+
+/**
+ * Class which generates a To-do list, based on a provided Map, retaining
+ * all information to be stored within a To-do object.
+ */
+public class InitializeTodoList implements IInitializeTodoList {
+
+  private static final int TOTAL_COLUMNS = 6;
+  private static final int COMPLETED_INDEX = 2;
+  private static final int ARRAY_INITIALIZER = 1000;
+<span class="fc" id="L22">  private static final String[] CLI_FLAGS = new String[]{&quot;n/a&quot;,&quot;--todo-text&quot;, &quot;--completed&quot;,</span>
+  &quot;--due&quot;, &quot;--priority&quot;, &quot;--category&quot;};
+
+  private Map&lt;String, ArrayList&lt;String&gt;&gt; todoMap;
+  private List&lt;Integer&gt; headerColumnOrder;
+
+  /**
+   * Generates an InitializeTodoList object, utilizing a Map retaining all information
+   * previously stored within a csv file as well as the column order of the file.
+   *
+   * @param todoMap - the map retaining all information garnered from a csv file
+   * @param headerColumnOrder - the order of headers of the csv file
+   */
+  public InitializeTodoList(Map&lt;String, ArrayList&lt;String&gt;&gt; todoMap,
+<span class="fc" id="L36">      List&lt;Integer&gt; headerColumnOrder) {</span>
+<span class="fc" id="L37">    this.todoMap = todoMap;</span>
+<span class="fc" id="L38">    this.headerColumnOrder = headerColumnOrder;</span>
+<span class="fc" id="L39">  }</span>
+
+  /**
+   * Generates a List of Todos, based on the provided information stored within
+   * a csv file.
+   *
+   * @return To-do list, retaining information previously stored within a csv file
+   *
+   * @throws InvalidArgumentException - thrown when an inappropriate entry is provided
+   * for an associated To-do field.
+   */
+  @Override
+  public List&lt;Todo&gt; parseCSVEntries() throws InvalidArgumentException {
+<span class="fc" id="L52">    List&lt;String[]&gt; addTodoArgs = this.generateArgumentList();</span>
+<span class="fc" id="L53">    List&lt;Todo&gt; todoList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">    for (String[] args : addTodoArgs) {</span>
+<span class="fc" id="L55">      int index = 0;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">      while (args[index] != null) {</span>
+<span class="fc" id="L57">        index++;</span>
+      }
+<span class="fc" id="L59">      Parser parser = new Parser(Arrays.copyOf(args, index));</span>
+<span class="fc" id="L60">      parser.setTaskManager(todoList);</span>
+<span class="fc" id="L61">      TaskManager taskManager = parser.parseCommandLine();</span>
+<span class="fc" id="L62">      taskManager.validateArgsAllTasks();</span>
+<span class="fc" id="L63">      taskManager.performAllTasks();</span>
+<span class="fc" id="L64">    }</span>
+<span class="fc" id="L65">    return todoList;</span>
+  }
+
+  /**
+   * Generates an argument list, mimicking that of the command line, so as to utilize
+   * the Parser and TaskManager to check csv file entries.
+   *
+   * @return a List of String Arrays, each bearing CLI-like elements, to create Todos, using
+   * the Parser and TaskManager.
+   */
+  private List&lt;String[]&gt; generateArgumentList() {
+<span class="fc" id="L76">    List&lt;String[]&gt; addTodoArgsList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L77">    List&lt;String&gt; idList = new ArrayList&lt;&gt;(this.todoMap.keySet());</span>
+<span class="fc" id="L78">    int i, loopStart = 1;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">    for (String id : idList) {</span>
+<span class="fc" id="L80">      String[] addTodoArgs = new String[ARRAY_INITIALIZER];</span>
+<span class="fc" id="L81">      int argumentIndex = 0;</span>
+<span class="fc" id="L82">      addTodoArgs[argumentIndex++] = &quot;--add-todo&quot;;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">      if (!id.equals(&quot;header&quot;)) {</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (i = loopStart; i &lt; TOTAL_COLUMNS; i++) {</span>
+<span class="fc" id="L85">          String entry = this.todoMap.get(id).get(i);</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">          if (!entry.equals(&quot;?&quot;) &amp;&amp; !entry.equals(&quot;false&quot;)) {</span>
+<span class="fc" id="L87">            addTodoArgs[argumentIndex++] = (CLI_FLAGS[i]);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            if (i != COMPLETED_INDEX) {</span>
+<span class="fc" id="L89">              addTodoArgs[argumentIndex++] = (this.todoMap.get(id).get(</span>
+<span class="fc" id="L90">                  this.headerColumnOrder.get(i)));</span>
+            }
+          }
+        }
+      }
+<span class="fc" id="L95">      int secondArgument = 1;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">      if (addTodoArgs[secondArgument] != null) {</span>
+<span class="fc" id="L97">        addTodoArgsList.add(addTodoArgs);</span>
+      }
+<span class="fc" id="L99">    }</span>
+<span class="fc" id="L100">    return addTodoArgsList;</span>
+  }
+
+  /**
+   * Determines whether an InitializeTodoList object is equivalent to another object,
+   * comparing memory location, class, and field values.
+   *
+   * @param o - the object being compared with an InitializeTodoList object
+   *
+   * @return boolean indicating whether an InitializeTodoList object is equivalent
+   * to another object
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L115">      return true;</span>
+    }
+<span class="fc bfc" id="L117" title="All 4 branches covered.">    if (o == null || this.getClass() != o.getClass()) {</span>
+<span class="fc" id="L118">      return false;</span>
+    }
+<span class="fc" id="L120">    InitializeTodoList that = (InitializeTodoList) o;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">    return Objects.equals(this.todoMap, that.todoMap) &amp;&amp;</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        Objects.equals(this.headerColumnOrder, that.headerColumnOrder);</span>
+  }
+
+  /**
+   * Determines the hashcode of an InitializeTodoList object
+   *
+   * @return the hashcode of an InitializeTodoList object
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L132">    return Objects.hash(this.todoMap, this.headerColumnOrder);</span>
+  }
+
+  /**
+   * Provides a string representation of an InitializeTodoList object
+   *
+   * @return a string representation of an InitializeTodoList object
+   */
+  @Override
+  public String toString() {
+<span class="fc" id="L142">    return &quot;InitializeTodoList {&quot; +</span>
+        &quot;todoMap = &quot; + this.todoMap +
+        &quot;, headerColumnOrder = &quot; + this.headerColumnOrder +
+        '}';
+  }
+
+  /**
+   * Returns the map retaining all information garnered from a csv file
+   *
+   * @return the map retaining all information garnered from a csv file
+   */
+  public Map&lt;String, ArrayList&lt;String&gt;&gt; getTodoMap() {
+<span class="fc" id="L154">    return this.todoMap;</span>
+  }
+
+  /**
+   * Returns the provided order of known header columns.
+   *
+   * @return the provided order of known header columns.
+   */
+  public List&lt;Integer&gt; getHeaderColumnOrder() {
+<span class="fc" id="L163">    return this.headerColumnOrder;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

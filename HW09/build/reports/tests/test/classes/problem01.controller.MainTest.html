@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class problem01.controller.MainTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class problem01.controller.MainTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/problem01.controller.html">problem01.controller</a> &gt; MainTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.181s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">main</td>
+<td class="success">0.055s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mainIOException</td>
+<td class="success">0.099s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mainInnerInvalidArgumentException</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mainOuterInvalidArgumentException</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>+----+-----------------------------------+-----------+-----------+----------+----------+
+| ID |                              Text | Completed |  Due Date | Priority | Category |
++----+-----------------------------------+-----------+-----------+----------+----------+
+|  1 |                        Finish HW9 |     false | 3/22/2020 |        1 |   school |
+|  2 |                     Mail passport |      true | 2/28/2020 |          |          |
+|  3 |                  Study for finals |     false |           |        2 |   school |
+|  4 |                   Clean the house |     false | 3/22/2020 |        3 |     home |
+|  5 | Buy yarn for blanket, stuffed toy |      true |           |          |     home |
++----+-----------------------------------+-----------+-----------+----------+----------+
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Apr 25, 2021 2:13:56 AM problem01.controller.Main main
+INFO: orange (The system cannot find the file specified)
+Apr 25, 2021 2:13:56 AM problem01.controller.Main main
+INFO: --csv-file must be followed by &lt;path/to/file&gt;
+Usage:
+
+--csv-file &lt;path/to/file&gt; The CSV file containing the todos. This option is required.
+--add-todo Add a new todo. If this option is provided, then --todo-text must also be provided.
+--todo-text &lt;description of todo&gt; A description of the todo.
+--completed (Optional) Sets the completed status of a new todo to true.
+--due &lt;due date&gt; (Optional) Sets the due date of a new todo.Date must be in the format MM/DD/YYYY
+--priority &lt;1, 2, or 3&gt; (Optional) Sets the priority of a new todo. The value can be 1, 2, or 3.
+--category &lt;a category name&gt; (Optional) Sets the category of a new todo. The value can
+be any String. Categories do not need to be pre-defined.
+--complete-todo &lt;id&gt; Mark the Todo with the provided ID as complete.
+--display Display todos. If none of the following optional arguments are provided, displays all todos.
+--show-incomplete (Optional) If --display is provided, only incomplete todos should be displayed.
+--show-category &lt;category&gt; (Optional) If --display is provided, only todos with the given category should be displayed.
+--sort-by-date (Optional) If --display is provided, sort the list of todos
+by date order (ascending). Cannot be combined with --sort-by-priority.
+--sort-by-priority (Optional) If --display is provided, sort the list of todos
+by priority (ascending). Cannot be combined with --sort-by-date.
+
+Apr 25, 2021 2:13:56 AM problem01.controller.Main main
+INFO: --todo-text &lt;description of todo&gt; is required if --add-todo is provided
+Usage:
+
+--csv-file &lt;path/to/file&gt; The CSV file containing the todos. This option is required.
+--add-todo Add a new todo. If this option is provided, then --todo-text must also be provided.
+--todo-text &lt;description of todo&gt; A description of the todo.
+--completed (Optional) Sets the completed status of a new todo to true.
+--due &lt;due date&gt; (Optional) Sets the due date of a new todo.Date must be in the format MM/DD/YYYY
+--priority &lt;1, 2, or 3&gt; (Optional) Sets the priority of a new todo. The value can be 1, 2, or 3.
+--category &lt;a category name&gt; (Optional) Sets the category of a new todo. The value can
+be any String. Categories do not need to be pre-defined.
+--complete-todo &lt;id&gt; Mark the Todo with the provided ID as complete.
+--display Display todos. If none of the following optional arguments are provided, displays all todos.
+--show-incomplete (Optional) If --display is provided, only incomplete todos should be displayed.
+--show-category &lt;category&gt; (Optional) If --display is provided, only todos with the given category should be displayed.
+--sort-by-date (Optional) If --display is provided, sort the list of todos
+by date order (ascending). Cannot be combined with --sort-by-priority.
+--sort-by-priority (Optional) If --display is provided, sort the list of todos
+by priority (ascending). Cannot be combined with --sort-by-date.
+
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.7</a> at Apr 25, 2021, 2:13:57 AM</p>
+</div>
+</div>
+</body>
+</html>

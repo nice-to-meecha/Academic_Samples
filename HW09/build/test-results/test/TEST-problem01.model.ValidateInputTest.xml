@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="problem01.model.ValidateInputTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2021-04-25T07:13:56" hostname="LAPTOP-NGSLLAAC" time="0.003">
+  <properties/>
+  <testcase name="checkCSVSuccess" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="testToString" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="checkFollowingArg" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="checkFollowingArgOutOfBounds" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="checkCSVFail" classname="problem01.model.ValidateInputTest" time="0.001"/>
+  <testcase name="testHashCode" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="testEquals" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="checkNoTaskSuccess" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="getCliArgs" classname="problem01.model.ValidateInputTest" time="0.0"/>
+  <testcase name="checkNoTaskFail" classname="problem01.model.ValidateInputTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
